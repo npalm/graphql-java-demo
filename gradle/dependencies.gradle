@@ -1,0 +1,21 @@
+ext { libraries = [:] }
+
+libraries.springboot = [
+        'org.springframework.boot:spring-boot-starter-web',
+        'org.springframework.boot:spring-boot-starter-data-jpa',
+]
+
+
+libraries.tools = [
+        'org.projectlombok:lombok:1.16.8',
+        'org.apache.commons:commons-lang3:3.5',
+        'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0',
+        'com.graphql-java:graphql-spring-boot-starter:3.1.1',
+        'com.graphql-java:graphiql-spring-boot-starter:3.1.1',
+        'com.graphql-java:graphql-java-tools:2.2.0',
+        'com.graphql-java:graphql-java:2.2.0'
+]
+
+libraries.database = [
+        'com.h2database:h2'
+]

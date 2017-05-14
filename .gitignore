@@ -1,0 +1,41 @@
+.idea/**
+.gradle/**
+build/**
+atlassian-ide-plugin.xml
+*.iml
+*.ipr
+*.iws
+
+classes
+out
+
+# Eclipse specific files
+.metadata
+/bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# Tern plugin
+.tern-project
