@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Collections;
 
 @Entity
 @Data
@@ -18,7 +17,6 @@ import java.util.Collections;
 @GraphQLObject("Person")
 @EqualsAndHashCode(exclude = {"id"})
 public class Person {
-
 
     @Id
     @GeneratedValue
@@ -41,5 +39,6 @@ public class Person {
     private String blog;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "speakers")
+    @GraphQLDescription("Talks of the person")
     private Collection<Talk> talks;
 }

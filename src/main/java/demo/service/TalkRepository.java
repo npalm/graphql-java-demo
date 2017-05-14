@@ -1,11 +1,10 @@
 package demo.service;
 
 import demo.model.Talk;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface TalkRepository extends CrudRepository<Talk, Long> {
@@ -14,5 +13,5 @@ public interface TalkRepository extends CrudRepository<Talk, Long> {
 
     Talk findByTitle(String title);
 
-    Page<Talk> findAll(Pageable page);
+    List<Talk> findAll();
 }

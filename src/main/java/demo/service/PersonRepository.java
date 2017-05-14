@@ -1,11 +1,10 @@
 package demo.service;
 
 import demo.model.Person;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 public interface PersonRepository extends CrudRepository<Person, Long> {
@@ -14,5 +13,5 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 
     Person findByName(String name);
 
-    Page<Person> findAll(Pageable page);
+    List<Person> findAll();
 }

@@ -21,11 +21,7 @@ package demo.service;
 
 import com.oembedler.moon.graphql.engine.stereotype.*;
 import demo.model.Person;
-import demo.model.Talk;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-
-import java.util.List;
 
 @GraphQLSchema
 public class Schema {
@@ -35,29 +31,7 @@ public class Schema {
     private PersonRepository personRepository;
 
     @GraphQLSchemaQuery
-    private QueryType queryType;
-
-    @GraphQLObject
-    public static class QueryType {
-
-        @GraphQLIgnore
-        @Autowired
-        private PersonRepository personRepository;
-
-        @GraphQLIgnore
-        @Autowired
-        private TalkRepository talkRepository;
-
-        @GraphQLField("persons")
-        public List<Person> persons() {
-            return personRepository.findAll(new PageRequest(0, 1000)).getContent();
-        }
-
-        @GraphQLField("talks")
-        public List<Talk> talks() {
-            return talkRepository.findAll(new PageRequest(0, 1000)).getContent();
-        }
-    }
+    private RootQueries rootQueries;
 
     @GraphQLMutation
     public String mandatoryMudation(@GraphQLIn("mandatoryMudation") String someText) {
