@@ -1,0 +1,21 @@
+type Query {
+    persons: [Person!]
+    person(name: String!): Person
+    talks: [Talk!]
+    talk(title: String!): Talk
+}
+
+type Person {
+  id: String!,
+  name: String,
+  blog: String,
+  githubAccount: String,
+  talks: [Talk],
+}
+
+type Talk {
+  id: String!,
+  title: String,
+  summary: String,
+  speakers: [Person],
+}
