@@ -1,3 +1,7 @@
+schema {
+    query: Query
+}
+
 type Query {
     persons: [Person!]
     person(name: String!): Person
@@ -5,8 +9,12 @@ type Query {
     talk(title: String!): Talk
 }
 
+type Mutation {
+    addPerson(name: String!): Person
+}
+
 type Person {
-  id: String!,
+  id: ID!,
   name: String,
   blog: String,
   githubAccount: String,
@@ -14,7 +22,7 @@ type Person {
 }
 
 type Talk {
-  id: String!,
+  id: ID!,
   title: String,
   summary: String,
   speakers: [Person],

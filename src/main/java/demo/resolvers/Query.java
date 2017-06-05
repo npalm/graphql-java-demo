@@ -37,4 +37,5 @@ public class Query implements GraphQLRootResolver {
         return talkRepository.findByTitle(title);
     }
 
+
 }

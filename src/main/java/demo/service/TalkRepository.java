@@ -9,7 +9,7 @@ import java.util.List;
 @Transactional
 public interface TalkRepository extends CrudRepository<Talk, String> {
 
-    Talk findById(String id);
+    Talk findById(Long id);
 
     Talk findByTitle(String title);
 
