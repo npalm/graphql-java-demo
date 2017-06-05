@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.2.RELEASE'
+        springBootVersion = '1.5.3.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -29,18 +29,11 @@ dependencies {
     compile libraries.springboot,
             libraries.tools,
             libraries.database
-
 }
 
 // Enables passing command line options to bootRun (e.g ./gradlew -Dspring.profiles.active=development bootRun)
 bootRun {
     systemProperties System.properties
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Camden.SR6"
-    }
 }
 
 task wrapper(type: Wrapper) {

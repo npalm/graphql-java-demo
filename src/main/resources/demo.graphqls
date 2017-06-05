@@ -14,7 +14,7 @@ type Mutation {
 }
 
 type Person {
-  id: ID!,
+  id: String!,
   name: String,
   blog: String,
   githubAccount: String,
@@ -22,7 +22,7 @@ type Person {
 }
 
 type Talk {
-  id: ID!,
+  id: String!,
   title: String,
   summary: String,
   speakers: [Person],
