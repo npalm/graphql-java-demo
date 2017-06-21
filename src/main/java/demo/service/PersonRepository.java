@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public interface PersonRepository extends CrudRepository<Person, Long> {
+public interface PersonRepository extends CrudRepository<Person, String> {
 
     Person findById(Long id);
 
