@@ -4,7 +4,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,7 +16,7 @@ public class Person {
 
     @Id
     @GeneratedValue
-    private final Long id = null;
+    private final String id = null;
 
     @NotEmpty
     @NonNull
@@ -27,5 +27,5 @@ public class Person {
     private String blog;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "speakers")
-    private Collection<Talk> talks;
+    private List<Talk> talks;
 }

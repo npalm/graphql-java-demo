@@ -1,6 +1,6 @@
 package demo.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLRootResolver;
+import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import demo.model.Person;
 import demo.model.Talk;
 import demo.service.PersonRepository;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class Query implements GraphQLRootResolver {
+public class Query implements GraphQLQueryResolver {
 
 
     @Autowired
@@ -27,7 +27,6 @@ public class Query implements GraphQLRootResolver {
     public Person person(final String name) {
         return personRepository.findByName(name);
     }
-
 
     public List<Talk> talks() {
         return talkRepository.findAll();

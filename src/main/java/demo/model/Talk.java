@@ -4,8 +4,8 @@ import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,7 +17,7 @@ public class Talk {
 
     @Id
     @GeneratedValue
-    private final Long id = null;
+    private final String id = null;
 
     @NotEmpty
     @NonNull
@@ -26,6 +26,6 @@ public class Talk {
     private String summary;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<Person> speakers = new HashSet<>();
+    private List<Person> speakers = new ArrayList<>();
 
 }
