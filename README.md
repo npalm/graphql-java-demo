@@ -11,7 +11,7 @@ Open en browser on http://localhost:8080, for play around with GraphiQL
 ## Docker
 Build image
 ```
-docker build -t grahpql .
+docker build -t graphql .
 ```
 Run
 ```
