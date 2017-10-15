@@ -7,9 +7,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public interface TalkRepository extends CrudRepository<Talk, String> {
+public interface TalkRepository extends CrudRepository<Talk, Long> {
 
-    Talk findById(String id);
+    Talk findById(Long id);
 
     Talk findByTitle(String title);
 

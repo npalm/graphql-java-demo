@@ -16,7 +16,7 @@ public class Person {
 
     @Id
     @GeneratedValue
-    private final String id = null;
+    private final Long id = null;
 
     @NotEmpty
     @NonNull

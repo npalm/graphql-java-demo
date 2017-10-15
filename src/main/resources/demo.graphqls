@@ -14,16 +14,16 @@ type Mutation {
 }
 
 type Person {
-  id: String!,
-  name: String,
+    id: ID!,
+    name: String!,
   blog: String,
   githubAccount: String,
-  talks: [Talk],
+    talks: [Talk!],
 }
 
 type Talk {
-  id: String!,
-  title: String,
+    id: ID!,
+    title: String!,
   summary: String,
-  speakers: [Person],
+    speakers: [Person!],
 }
