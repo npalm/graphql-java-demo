@@ -1,8 +1,10 @@
 package demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import demo.model.Conference;
 import demo.model.Person;
 import demo.model.Talk;
+import demo.service.ConferenceRepository;
 import demo.service.PersonRepository;
 import demo.service.TalkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class Query implements GraphQLQueryResolver {
     @Autowired
     private TalkRepository talkRepository;
 
+    @Autowired
+    private ConferenceRepository conferenceRepository;
+
     public List<Person> persons() {
         return personRepository.findAll();
     }
@@ -36,5 +41,8 @@ public class Query implements GraphQLQueryResolver {
         return talkRepository.findByTitle(title);
     }
 
+    public List<Conference> conferences() {
+        return conferenceRepository.findAll();
+    }
 
 }

@@ -1,6 +1,8 @@
 package demo.model;
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -26,6 +28,11 @@ public class Talk {
     private String summary;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Person> speakers = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Conference> conferences = new ArrayList<>();
 
 }

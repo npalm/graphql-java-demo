@@ -1,12 +1,14 @@
 schema {
-    query: Query
+    query: Query,
+    mutation: Mutation
 }
 
 type Query {
     persons: [Person!]
     person(name: String!): Person
     talks: [Talk!]
-    talk(title: String!): Talk
+    talk(title: String!): Talk,
+    conferences: [Conference!]!
 }
 
 type Mutation {
@@ -16,14 +18,23 @@ type Mutation {
 type Person {
     id: ID!,
     name: String!,
-  blog: String,
-  githubAccount: String,
+    blog: String,
+    githubAccount: String,
     talks: [Talk!],
 }
 
 type Talk {
     id: ID!,
     title: String!,
-  summary: String,
+    summary: String,
     speakers: [Person!],
+    conferences: [Conference!]
+}
+
+
+type Conference {
+    id: ID!,
+    name: String!,
+    city: String,
+    talks: [Talk!]
 }
