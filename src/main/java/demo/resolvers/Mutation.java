@@ -15,4 +15,5 @@ public class Mutation implements GraphQLMutationResolver {
     public Person addPerson(final String name) {
         return personRepository.save(new Person(name));
     }
+
 }

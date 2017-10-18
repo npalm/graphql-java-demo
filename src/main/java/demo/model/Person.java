@@ -28,4 +28,6 @@ public class Person {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "speakers")
     private List<Talk> talks;
+
+
 }

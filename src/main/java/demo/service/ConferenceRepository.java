@@ -14,4 +14,5 @@ public interface ConferenceRepository extends CrudRepository<Conference, Long> {
     Conference findByName(String name);
 
     List<Conference> findAll();
+
 }

@@ -4,37 +4,58 @@ schema {
 }
 
 type Query {
+    # Find all persons
     persons: [Person!]
+    # Find a person based on the name
     person(name: String!): Person
+    # Find all talks
     talks: [Talk!]
+    # Find a talk based on the title
     talk(title: String!): Talk,
+    # Find all conferences
     conferences: [Conference!]!
+    # Find a conference based on the name
+    conference(name: String!): Conference
 }
 
 type Mutation {
+    # Create a new person
     addPerson(name: String!): Person
 }
 
+# Object to represent a Person
 type Person {
     id: ID!,
+    # Fullname of the person
     name: String!,
+    # URL to the blog
     blog: String,
+    # Github account id
     githubAccount: String,
+    # Talks given by the person
     talks: [Talk!],
 }
 
+# Object to represent a talk
 type Talk {
     id: ID!,
+    # Title of the talk
     title: String!,
+    # Short summary of the talk
     summary: String,
+    # Speakers of the talk
     speakers: [Person!],
+    # Conferences where the talk is on the agenda
     conferences: [Conference!]
 }
 
-
+# Object to represent a conference
 type Conference {
     id: ID!,
+    # Name of the conference
     name: String!,
+    # City where the conference is held
     city: String,
+    # Talks on the conference agenda
     talks: [Talk!]
 }

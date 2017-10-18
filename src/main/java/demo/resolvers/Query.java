@@ -45,4 +45,8 @@ public class Query implements GraphQLQueryResolver {
         return conferenceRepository.findAll();
     }
 
+    public Conference conference(final String name) {
+        return conferenceRepository.findByName(name);
+    }
+
 }
