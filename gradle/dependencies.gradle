@@ -3,11 +3,12 @@ ext { libraries = [:] }
 libraries.springboot = [
         'org.springframework.boot:spring-boot-starter-web',
         'org.springframework.boot:spring-boot-starter-data-jpa',
+        'javax.xml.bind:jaxb-api:2.3.0'
 ]
 
 
 libraries.tools = [
-        'org.projectlombok:lombok:1.16.8',
+        'org.projectlombok:lombok:1.18.2',
         'org.apache.commons:commons-lang3:3.5',
         'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0'
 ]
