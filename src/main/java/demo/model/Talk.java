@@ -21,7 +21,6 @@ public class Talk {
     @GeneratedValue
     private final Long id = null;
 
-    @NotEmpty
     @NonNull
     private String title;
 

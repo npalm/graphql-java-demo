@@ -18,7 +18,6 @@ public class Person {
     @GeneratedValue
     private final Long id = null;
 
-    @NotEmpty
     @NonNull
     private String name;
 
