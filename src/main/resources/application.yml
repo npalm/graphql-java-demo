@@ -6,18 +6,46 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: false
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
 
 graphql:
-      servlet:
-               mapping: /graphql/*
-               enabled: true
-               corsEnabled: true
+  servlet:
+    mapping: /graphql/*
+    enabled: true
+    corsEnabled: true
+    subscriptions:
+      websocket:
+        path: /subscriptions
 
-      spring-graphql-common:
-               clientMutationIdName: clientMutationId
-               injectClientMutationId: true
-               allowEmptyClientMutationId: false
-               mutationInputArgumentName: input
-               outputObjectNamePrefix: Payload
-               inputObjectNamePrefix: Input
-               schemaMutationObjectName: Mutation
+#
+#      spring-graphql-common:
+#               clientMutationIdName: clientMutationId
+#               injectClientMutationId: true
+#               allowEmptyClientMutationId: false
+#               mutationInputArgumentName: input
+#               outputObjectNamePrefix: Payload
+#               inputObjectNamePrefix: Input
+#               schemaMutationObjectName: Mutation
+
+
+#graphiql:
+#    mapping: /graphiql
+#    endpoint: /graphql
+#    enabled: true
+#    pageTitle: GraphiQL
+#    cdn:
+#        enabled: false
+#        version: 0.11.11
+#    props:
+#        resources:
+#            query: query.graphql
+#            defaultQuery: defaultQuery.graphql
+#            variables: variables.graphql
+#        variables:
+#            editorTheme: "solarized light"
+#    headers:
+#        Authorization: "Bearer <your-token>"

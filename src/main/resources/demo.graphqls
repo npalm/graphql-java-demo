@@ -1,6 +1,7 @@
 schema {
     query: Query,
     mutation: Mutation
+    subscription : Subscription
 }
 
 type Query {
@@ -13,14 +14,28 @@ type Query {
     # Find a talk based on the title
     talk(title: String!): Talk,
     # Find all conferences
-    conferences: [Conference!]!
+    conferences: [Conference!]!,
     # Find a conference based on the name
-    conference(name: String!): Conference
+    conference(name: String!): Conference,
+    comments(author: String!): [Comment!]
 }
 
 type Mutation {
     # Create a new person
     addPerson(name: String!): Person
+}
+
+
+type Subscription {
+    stockQuotes(stockCodes:[String]) : StockPriceUpdate!
+    comments: CommentUpdate!
+}
+
+type CommentUpdate {
+    comment : String
+    authorName : String
+    talkTitle : String
+    timeStamp : String
 }
 
 # Object to represent a Person
@@ -46,7 +61,9 @@ type Talk {
     # Speakers of the talk
     speakers: [Person!],
     # Conferences where the talk is on the agenda
-    conferences: [Conference!]
+    conferences: [Conference!],
+    # discussion comments
+    comments: [Comment]
 }
 
 # Object to represent a conference
@@ -58,4 +75,12 @@ type Conference {
     city: String,
     # Talks on the conference agenda
     talks: [Talk!]
+}
+
+# Object to represent a conference
+type Comment {
+    id: ID!,
+    comment: String,
+    author: Person,
+    talk: Talk
 }

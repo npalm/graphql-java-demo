@@ -1,9 +1,11 @@
 package demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import demo.model.Comment;
 import demo.model.Conference;
 import demo.model.Person;
 import demo.model.Talk;
+import demo.service.CommentRepository;
 import demo.service.ConferenceRepository;
 import demo.service.PersonRepository;
 import demo.service.TalkRepository;
@@ -24,6 +26,9 @@ public class Query implements GraphQLQueryResolver {
 
     @Autowired
     private ConferenceRepository conferenceRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
 
     public List<Person> persons() {
         return personRepository.findAll();
@@ -49,4 +54,7 @@ public class Query implements GraphQLQueryResolver {
         return conferenceRepository.findByName(name);
     }
 
+    public List<Comment> comments(final String author) {
+        return this.commentRepository.findByTalkId(personRepository.findByName(author).getId());
+    }
 }

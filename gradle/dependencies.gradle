@@ -9,7 +9,10 @@ libraries.springboot = [
 
 libraries.tools = [
         'org.projectlombok:lombok:1.18.2',
-        'org.apache.commons:commons-lang3:3.7'
+        'org.apache.commons:commons-lang3:3.7',
+        'io.reactivex.rxjava2:rxjava:2.1.5',
+        'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:'
+
 ]
 
 
