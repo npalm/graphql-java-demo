@@ -1,4 +1,4 @@
-package demo;
+package demo.publishers;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

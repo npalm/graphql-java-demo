@@ -27,7 +27,6 @@ public class Mutation implements GraphQLMutationResolver {
     @Autowired
     private CommentRepository commentRepository;
 
-
     @Autowired
     private ConferenceRepository conferenceRepository;
 

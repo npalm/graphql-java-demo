@@ -1,6 +1,5 @@
 package demo.publishers;
 
-import demo.CommentUpdate;
 import demo.model.Comment;
 import demo.model.Talk;
 import demo.service.TalkRepository;

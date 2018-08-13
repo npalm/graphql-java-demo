@@ -2,17 +2,17 @@ package demo.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
-import demo.CommentUpdate;
 import demo.publishers.CommentPublisher;
+import demo.publishers.CommentUpdate;
 import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Component;
 
 @Component
-class CommentSubscription implements GraphQLSubscriptionResolver {
+class Subscription implements GraphQLSubscriptionResolver {
 
     private CommentPublisher commentPublisher;
 
-    CommentSubscription(CommentPublisher commentPublisher) {
+    Subscription(CommentPublisher commentPublisher) {
         this.commentPublisher = commentPublisher;
     }
 
