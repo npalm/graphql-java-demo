@@ -9,7 +9,7 @@ import java.util.List;
 @Transactional
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
-    Person findByName(String name);
+    List<Person> findByName(String name);
 
     List<Person> findAll();
 }

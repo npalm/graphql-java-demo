@@ -1,7 +1,6 @@
 package demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import demo.model.Comment;
 import demo.model.Conference;
 import demo.model.Person;
 import demo.model.Talk;
@@ -9,6 +8,7 @@ import demo.service.CommentRepository;
 import demo.service.ConferenceRepository;
 import demo.service.PersonRepository;
 import demo.service.TalkRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,8 +31,8 @@ public class Query implements GraphQLQueryResolver {
     @Autowired
     private CommentRepository commentRepository;
 
-    public List<Person> persons() {
-        return personRepository.findAll();
+    public List<Person> persons(final String name) {
+        return StringUtils.isNoneBlank(name) ? personRepository.findByName(name) : personRepository.findAll();
     }
 
     public Optional<Person> person(final Long id) {
@@ -55,7 +55,4 @@ public class Query implements GraphQLQueryResolver {
         return conferenceRepository.findById(id);
     }
 
-    public List<Comment> comments(final String author) {
-        return this.commentRepository.findByTalkId(personRepository.findByName(author).getId());
-    }
 }

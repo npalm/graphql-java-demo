@@ -73,7 +73,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
             talk.setTitle(talkInput[1]);
             String[] speakers = StringUtils.split(talkInput[0], ",");
             for(String speakerInput : speakers) {
-                Person speaker = personRepository.findByName(speakerInput);
+                Person speaker = personRepository.findByName(speakerInput).get(0); // Author names are unique for the demo :)
                 talk.getSpeakers().add(speaker);
             }
             String[] conferenceNames = StringUtils.split(talkInput[2], ",");

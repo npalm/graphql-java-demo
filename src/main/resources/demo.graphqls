@@ -5,8 +5,8 @@ schema {
 }
 
 type Query {
-    # Find all persons
-    persons: [Person!]
+    # Find all persons, optional search by name
+    persons(name: String): [Person!]
     # Find a person based by id
     person(id: Long!): Person
     # Find all talks
@@ -17,8 +17,6 @@ type Query {
     conferences: [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
-    # Find comments by author name
-    comments(author: String!): [Comment!]
 }
 
 type Mutation {
