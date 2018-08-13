@@ -23,11 +23,11 @@ type Query {
 type Mutation {
     # Create a new person
     addPerson(name: String!): Person
+    addComment(comment: InputComment!): Comment
 }
 
 
 type Subscription {
-    stockQuotes(stockCodes:[String]) : StockPriceUpdate!
     comments: CommentUpdate!
 }
 
@@ -83,4 +83,12 @@ type Comment {
     comment: String,
     author: Person,
     talk: Talk
+}
+
+
+# Object to represent a conference
+input InputComment {
+    comment: String,
+    authorName: String,
+    talkId: Long
 }

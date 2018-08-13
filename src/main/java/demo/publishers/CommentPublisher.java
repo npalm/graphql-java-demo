@@ -8,18 +8,17 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.observables.ConnectableObservable;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -35,13 +34,16 @@ public class CommentPublisher {
 
     final Flowable<CommentUpdate> publisher;
 
+
+    public ObservableEmitter<CommentUpdate> emitter;
+
     public CommentPublisher() {
         Observable<CommentUpdate> commentUpdateObservable = Observable.create(emitter -> {
+            this.emitter = emitter;
             ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
             executorService.scheduleAtFixedRate(newComment(emitter), 0, 2, TimeUnit.SECONDS);
 
         });
-
 
         ConnectableObservable<CommentUpdate> connectableObservable = commentUpdateObservable.share().publish();
         connectableObservable.connect();
