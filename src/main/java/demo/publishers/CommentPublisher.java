@@ -1,6 +1,7 @@
 package demo.publishers;
 
 import demo.CommentUpdate;
+import demo.model.Comment;
 import demo.model.Talk;
 import demo.service.TalkRepository;
 import io.reactivex.BackpressureStrategy;
@@ -15,8 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -34,14 +33,13 @@ public class CommentPublisher {
 
     final Flowable<CommentUpdate> publisher;
 
-
-    public ObservableEmitter<CommentUpdate> emitter;
+    private ObservableEmitter<CommentUpdate> emitter;
 
     public CommentPublisher() {
         Observable<CommentUpdate> commentUpdateObservable = Observable.create(emitter -> {
             this.emitter = emitter;
             ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-            executorService.scheduleAtFixedRate(newComment(emitter), 0, 2, TimeUnit.SECONDS);
+            executorService.scheduleAtFixedRate(newComment(emitter), 0, 10, TimeUnit.SECONDS);
 
         });
 
@@ -52,23 +50,25 @@ public class CommentPublisher {
         publisher = connectableObservable.toFlowable(BackpressureStrategy.BUFFER);
     }
 
+    public void publish(final Comment comment) {
+        emitter.onNext(new CommentUpdate(comment.getComment(), comment.getAuthor().getName(), comment.getTalk().getTitle(), ""));
+    }
+
     public Runnable newComment(ObservableEmitter<CommentUpdate> emitter) {
         return () -> {
-            List<CommentUpdate> update = getUpdates();
+            CommentUpdate update = getUpdates();
             if (update != null) {
-                emitStocks(emitter, update);
+                emitUpdates(emitter, update);
             }
         };
     }
 
-    private void emitStocks(ObservableEmitter<CommentUpdate> emitter, List<CommentUpdate> stockPriceUpdates) {
-        for (CommentUpdate stockPriceUpdate : stockPriceUpdates) {
+    private void emitUpdates(ObservableEmitter<CommentUpdate> emitter, CommentUpdate commentUpdate) {
             try {
-                emitter.onNext(stockPriceUpdate);
+                emitter.onNext(commentUpdate);
             } catch (RuntimeException e) {
                 LOG.error("Cannot send StockUpdate", e);
             }
-        }
     }
 
 
@@ -85,23 +85,12 @@ public class CommentPublisher {
         return result;
     }
 
-    private List<CommentUpdate> getUpdates() {
-        List<CommentUpdate> updates = new ArrayList<>();
-
-        while (new Random().nextInt(4) < 2) {
-            updates.add(createComment());
-        }
-        LOG.info("publish: " + updates.size());
-        return updates;
-    }
-
-
-    private CommentUpdate createComment() {
-
+    private CommentUpdate getUpdates() {
         return new CommentUpdate("test",
                 "Niek", "grapql" + new Random().nextInt(100),
                 LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
     }
+
 
 
 }

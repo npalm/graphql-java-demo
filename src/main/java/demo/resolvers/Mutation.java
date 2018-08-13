@@ -1,7 +1,6 @@
 package demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import demo.CommentUpdate;
 import demo.model.Comment;
 import demo.model.Person;
 import demo.model.Talk;
@@ -43,7 +42,7 @@ public class Mutation implements GraphQLMutationResolver {
         }
 
         Comment savedComment = commentRepository.save(new Comment(comment.getComment(), person, talk.get()));
-        commentPublisher.emitter.onNext(new CommentUpdate(savedComment.getComment(), savedComment.getAuthor().getName(), savedComment.getTalk().getTitle(), ""));
+        commentPublisher.publish(savedComment);
 
         return savedComment;
     }

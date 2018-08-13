@@ -3,7 +3,6 @@ package demo;
 import demo.model.Conference;
 import demo.model.Person;
 import demo.model.Talk;
-import demo.publishers.Stupid;
 import demo.service.ConferenceRepository;
 import demo.service.PersonRepository;
 import demo.service.TalkRepository;
@@ -26,8 +25,6 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
     @Autowired
     private ConferenceRepository conferenceRepository;
 
-    @Autowired
-    private Stupid stupid;
 
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
@@ -90,6 +87,5 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         }
 
 
-        stupid.start();
     }
 }
