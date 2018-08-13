@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class InputComment {
 
     private Long talkId;
-    private String authorName;
+    private Long authorId;
     private String comment;
 }

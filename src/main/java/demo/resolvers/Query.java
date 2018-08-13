@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class Query implements GraphQLQueryResolver {
@@ -34,24 +35,24 @@ public class Query implements GraphQLQueryResolver {
         return personRepository.findAll();
     }
 
-    public Person person(final String name) {
-        return personRepository.findByName(name);
+    public Optional<Person> person(final Long id) {
+        return personRepository.findById(id);
     }
 
     public List<Talk> talks() {
         return talkRepository.findAll();
     }
 
-    public Talk talk(final String title) {
-        return talkRepository.findByTitle(title);
+    public Optional<Talk> talk(final Long id) {
+        return talkRepository.findById(id);
     }
 
     public List<Conference> conferences() {
         return conferenceRepository.findAll();
     }
 
-    public Conference conference(final String name) {
-        return conferenceRepository.findByName(name);
+    public Optional<Conference> conference(final Long id) {
+        return conferenceRepository.findById(id);
     }
 
     public List<Comment> comments(final String author) {
