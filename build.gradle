@@ -31,6 +31,8 @@ dependencies {
             libraries.tools,
             libraries.graphql,
             libraries.database
+    
+    testCompile libraries.test
 }
 
 // Enables passing command line options to bootRun (e.g ./gradlew -Dspring.profiles.active=development bootRun)

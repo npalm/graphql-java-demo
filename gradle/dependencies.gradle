@@ -24,3 +24,8 @@ libraries.graphql = [
 libraries.database = [
         'com.h2database:h2'
 ]
+
+libraries.test = [
+        'org.springframework.boot:spring-boot-starter-test',
+        'com.graphql-java:graphql-spring-boot-starter-test:5.0.2',
+]
