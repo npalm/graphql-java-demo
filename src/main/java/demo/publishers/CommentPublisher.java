@@ -9,8 +9,7 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.observables.ConnectableObservable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,10 +21,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 public class CommentPublisher {
-
-    private static final Logger LOG = LoggerFactory.getLogger(CommentPublisher.class);
 
 
     @Autowired
@@ -64,11 +62,11 @@ public class CommentPublisher {
     }
 
     private void emitUpdates(ObservableEmitter<CommentUpdate> emitter, CommentUpdate commentUpdate) {
-            try {
-                emitter.onNext(commentUpdate);
-            } catch (RuntimeException e) {
-                LOG.error("Cannot send StockUpdate", e);
-            }
+        try {
+            emitter.onNext(commentUpdate);
+        } catch (RuntimeException e) {
+            log.error("Cannot send StockUpdate", e);
+        }
     }
 
 
@@ -90,7 +88,6 @@ public class CommentPublisher {
                 "Niek", "grapql" + new Random().nextInt(100),
                 LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
     }
-
 
 
 }

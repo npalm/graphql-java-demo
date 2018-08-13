@@ -22,8 +22,12 @@ type Query {
 
 type Mutation {
     # Create a new person
-    addPerson(name: String!): Person
+    addConference(conference: InputConference!): Conference
+    addPerson(person: InputPerson!): Person
+    addTalk(talk: InputTalk): Talk
     addComment(comment: InputComment!): Comment
+    addTalkToConference(conferenceId: Long, talkId: Long): Conference
+    addSpeakerToTalk(talkId: Long, speakerId: Long): Talk
 }
 
 
@@ -91,4 +95,28 @@ input InputComment {
     comment: String,
     authorName: String,
     talkId: Long
+}
+
+# Object to represent a Person
+input InputPerson {
+    # Fullname of the person
+    name: String!,
+    # URL to the blog
+    blog: String,
+    # Github account id
+    githubAccount: String
+}
+
+
+# Object to represent a talk
+input InputTalk {
+    # Title of the talk
+    title: String!,
+    # Short summary of the talk
+    summary: String
+}
+
+input InputConference {
+    name: String!,
+    city: String!
 }
