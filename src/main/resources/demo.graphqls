@@ -1,61 +1,145 @@
 schema {
     query: Query,
     mutation: Mutation
+    subscription : Subscription
 }
 
 type Query {
-    # Find all persons
-    persons: [Person!]
-    # Find a person based on the name
-    person(name: String!): Person
+    # Find all persons, optional search by name
+    persons(name: String): [Person!]
+    # Find a person based by id
+    person(id: Long!): Person
     # Find all talks
     talks: [Talk!]
-    # Find a talk based on the title
-    talk(title: String!): Talk,
+    # Find a talk by id
+    talk(id: Long!): Talk
     # Find all conferences
-    conferences: [Conference!]!
+    conferences: [Conference!]
     # Find a conference based on the name
-    conference(name: String!): Conference
+    conference(id: Long!): Conference
 }
 
 type Mutation {
-    # Create a new person
-    addPerson(name: String!): Person
+    # Add a new conference
+    addConference(conference: InputConference!): Conference
+    # Add a new Person
+    addPerson(person: InputPerson!): Person
+    # Add a new Talk
+    addTalk(talk: InputTalk): Talk
+    # Add a new comment
+    addComment(comment: InputComment!): Comment
+    # Add a talk to a conference
+    addTalkToConference(conferenceId: Long, talkId: Long): Conference
+    # Add a speaker to a talk
+    addSpeakerToTalk(talkId: Long, speakerId: Long): Talk
+}
+
+
+type Subscription {
+    # Subscribe to all new comments
+    comments: CommentUpdate!
+}
+
+# Comment update
+type CommentUpdate {
+    # The comment text
+    comment : String
+    # The name of the author
+    authorName : String
+    # The title of the talk
+    talkTitle : String
+    # Time when the comment was received
+    timeStamp : String
 }
 
 # Object to represent a Person
 type Person {
-    id: ID!,
+    # The technical id
+    id: ID!
     # Fullname of the person
-    name: String!,
+    name: String!
     # URL to the blog
-    blog: String,
+    blog: String
     # Github account id
-    githubAccount: String,
+    githubAccount: String
     # Talks given by the person
-    talks: [Talk!],
+    talks: [Talk!]
 }
 
 # Object to represent a talk
 type Talk {
-    id: ID!,
+    # The technical id
+    id: ID!
     # Title of the talk
-    title: String!,
+    title: String!
     # Short summary of the talk
-    summary: String,
+    summary: String
     # Speakers of the talk
-    speakers: [Person!],
+    speakers: [Person!]
     # Conferences where the talk is on the agenda
     conferences: [Conference!]
+    # discussion comments
+    comments: [Comment]
 }
 
 # Object to represent a conference
 type Conference {
-    id: ID!,
+    # The technical id
+    id: ID!
     # Name of the conference
-    name: String!,
+    name: String!
     # City where the conference is held
     city: String,
     # Talks on the conference agenda
     talks: [Talk!]
+}
+
+# Object to represent a comment
+type Comment {
+    # The technical id
+    id: ID!
+    # The comment text
+    comment: String!
+    # The author of the comment
+    author: Person!
+    # The talk for which the comment is made
+    talk: Talk!
+}
+
+
+# Input type for a new Comment
+input InputComment {
+    # The comment text
+    comment: String!
+    # The id of the author
+    authorId: String!
+    # The id of the talk
+    talkId: Long!
+}
+
+# Input type for a new Person
+input InputPerson {
+    # Fullname of the person
+    name: String!
+    # URL to the blog
+    blog: String
+    # Github account id
+    githubAccount: String
+}
+
+
+# Input type for a new Talk
+input InputTalk {
+    # Title of the talk
+    title: String!
+    # Short summary of the talk
+    summary: String!
+}
+
+# Input type for a new Conference
+input InputConference {
+    # Name of the conference
+    name: String!
+    # City where the conference is held
+    city: String!
 }

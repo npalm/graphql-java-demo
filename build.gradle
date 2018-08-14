@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.7.RELEASE'
+        springBootVersion = '2.0.4.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -13,6 +13,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 
 apply from: "${rootDir}/gradle/dependencies.gradle"
@@ -30,6 +31,8 @@ dependencies {
             libraries.tools,
             libraries.graphql,
             libraries.database
+    
+    testCompile libraries.test
 }
 
 // Enables passing command line options to bootRun (e.g ./gradlew -Dspring.profiles.active=development bootRun)
@@ -38,5 +41,5 @@ bootRun {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.9'
 }

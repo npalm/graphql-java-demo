@@ -3,21 +3,29 @@ ext { libraries = [:] }
 libraries.springboot = [
         'org.springframework.boot:spring-boot-starter-web',
         'org.springframework.boot:spring-boot-starter-data-jpa',
+        'javax.xml.bind:jaxb-api:2.3.0'
 ]
 
 
 libraries.tools = [
-        'org.projectlombok:lombok:1.16.8',
-        'org.apache.commons:commons-lang3:3.5',
-        'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0'
+        'org.projectlombok:lombok:1.18.2',
+        'org.apache.commons:commons-lang3:3.7',
+        'io.reactivex.rxjava2:rxjava:2.1.5',
+        'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:'
+
 ]
 
 
 libraries.graphql = [
-        'com.graphql-java:graphql-spring-boot-starter:3.9.1',
-        'com.graphql-java:graphiql-spring-boot-starter:3.9.1',
-        'com.graphql-java:graphql-java-tools:4.1.1'
+        'com.graphql-java:graphql-spring-boot-starter:5.0.2',
+        'com.graphql-java:graphiql-spring-boot-starter:5.0.2',
+        'com.graphql-java:graphql-java-tools:5.2.3'
 ]
 libraries.database = [
         'com.h2database:h2'
+]
+
+libraries.test = [
+        'org.springframework.boot:spring-boot-starter-test',
+        'com.graphql-java:graphql-spring-boot-starter-test:5.0.2',
 ]

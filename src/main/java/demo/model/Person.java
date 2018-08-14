@@ -1,7 +1,6 @@
 package demo.model;
 
 import lombok.*;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +17,6 @@ public class Person {
     @GeneratedValue
     private final Long id = null;
 
-    @NotEmpty
     @NonNull
     private String name;
 
@@ -28,6 +26,7 @@ public class Person {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "speakers")
     private List<Talk> talks;
+
 
 
 }

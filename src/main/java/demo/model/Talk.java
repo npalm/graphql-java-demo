@@ -3,7 +3,6 @@ package demo.model;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ public class Talk {
     @GeneratedValue
     private final Long id = null;
 
-    @NotEmpty
     @NonNull
     private String title;
 
@@ -34,5 +32,9 @@ public class Talk {
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Conference> conferences = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "talk")
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Comment> comments = new ArrayList<>();
 
 }

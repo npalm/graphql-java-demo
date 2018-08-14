@@ -1,27 +1,29 @@
 package demo.model;
 
+
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @RequiredArgsConstructor
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"id"})
-public class Conference {
+public class Comment {
 
     @Id
     @GeneratedValue
     private final Long id = null;
 
     @NonNull
-    private String name;
+    private String comment;
 
-    private String city;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person author;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "conferences")
-    private List<Talk> talks;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="talk_id")
+    private Talk talk;
 }
