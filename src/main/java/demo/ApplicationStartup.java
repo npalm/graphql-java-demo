@@ -31,9 +31,9 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 
         String[][] speakersInput = {
                 {"Niek", "npalm", "https://code040.github.io"},
-                {"Josh","joshlong","https://spring.io/team/jlong"},
-                {"Maarten","",""},
-                {"Gert","aval",""},
+                {"Josh", "joshlong", "https://spring.io/team/jlong"},
+                {"Maarten", "", ""},
+                {"Gert", "aval", ""},
                 {"Arjen", "poutsma", ""},
                 {"Todd", "", ""},
                 {"Martin", "", ""},
@@ -53,7 +53,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
         String[][] conferencesInput = {{"Nextbuild 2017", "Eindhoven"},
                 {"GeeCon 2017", "Prague"}};
 
-        for(String[] speaker : speakersInput) {
+        for (String[] speaker : speakersInput) {
             Person person = new Person();
             person.setName(speaker[0]);
             person.setGithubAccount(speaker[1]);
@@ -68,11 +68,11 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
             conferenceRepository.save(conference);
         }
 
-        for(String[] talkInput : talksInput ) {
+        for (String[] talkInput : talksInput) {
             Talk talk = new Talk();
             talk.setTitle(talkInput[1]);
             String[] speakers = StringUtils.split(talkInput[0], ",");
-            for(String speakerInput : speakers) {
+            for (String speakerInput : speakers) {
                 Person speaker = personRepository.findByName(speakerInput).get(0); // Author names are unique for the demo :)
                 talk.getSpeakers().add(speaker);
             }

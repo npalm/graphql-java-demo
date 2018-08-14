@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode(exclude = {"id", "talks"})
 public class Person {
 
     @Id
@@ -26,7 +26,6 @@ public class Person {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "speakers")
     private List<Talk> talks;
-
 
 
 }

@@ -4,16 +4,17 @@ import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import demo.model.Conference;
 import demo.model.Person;
 import demo.model.Talk;
-import demo.service.CommentRepository;
 import demo.service.ConferenceRepository;
 import demo.service.PersonRepository;
+import demo.service.PersonService;
 import demo.service.TalkRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 public class Query implements GraphQLQueryResolver {
@@ -29,10 +30,10 @@ public class Query implements GraphQLQueryResolver {
     private ConferenceRepository conferenceRepository;
 
     @Autowired
-    private CommentRepository commentRepository;
+    private PersonService personService;
 
-    public List<Person> persons(final String name) {
-        return StringUtils.isNoneBlank(name) ? personRepository.findByName(name) : personRepository.findAll();
+    public List<Person> persons(final InputPerson filter) {
+        return StreamSupport.stream(personService.findPerson(filter.convert()).spliterator(), false).collect(Collectors.toList());
     }
 
     public Optional<Person> person(final Long id) {

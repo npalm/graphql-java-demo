@@ -6,7 +6,7 @@ schema {
 
 type Query {
     # Find all persons, optional search by name
-    persons(name: String): [Person!]
+    persons(filter: InputPerson): [Person!]
     # Find a person based by id
     person(id: Long!): Person
     # Find all talks

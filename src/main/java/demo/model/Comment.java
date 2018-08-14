@@ -24,6 +24,6 @@ public class Comment {
     private Person author;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="talk_id")
+    @JoinColumn(name = "talk_id")
     private Talk talk;
 }

@@ -26,6 +26,7 @@ libraries.database = [
 ]
 
 libraries.test = [
+        'org.mockito:mockito-core:2.21.0',
         'org.springframework.boot:spring-boot-starter-test',
-        'com.graphql-java:graphql-spring-boot-starter-test:5.0.2',
+        'com.graphql-java:graphql-spring-boot-starter-test:5.0.2'
 ]
