@@ -10,13 +10,14 @@ type Query {
     # Find a person based by id
     person(id: Long!): Person
     # Find all talks
-    talks: [Talk!]
+    talks(filter: InputTalk): [Talk!]
     # Find a talk by id
     talk(id: Long!): Talk
     # Find all conferences
     conferences: [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
+    comments(page: InputPage!): CommentPageableResponse
 }
 
 type Mutation {
@@ -112,7 +113,7 @@ input InputComment {
     # The comment text
     comment: String!
     # The id of the author
-    authorId: String!
+    authorId: Long!
     # The id of the talk
     talkId: Long!
 }
@@ -120,7 +121,7 @@ input InputComment {
 # Input type for a new Person
 input InputPerson {
     # Fullname of the person
-    name: String!
+    name: String
     # URL to the blog
     blog: String
     # Github account id
@@ -131,9 +132,9 @@ input InputPerson {
 # Input type for a new Talk
 input InputTalk {
     # Title of the talk
-    title: String!
+    title: String
     # Short summary of the talk
-    summary: String!
+    summary: String
 }
 
 # Input type for a new Conference
@@ -143,3 +144,22 @@ input InputConference {
     # City where the conference is held
     city: String!
 }
+
+input InputPage {
+    page: Long!
+    size: Long!
+}
+
+type PageInfo {
+    totalElements: Long!
+    totalPages: Long!
+    numberOfEelements: Long!
+    pageNumber: Long!
+    pageSize: Long!
+}
+
+type CommentPageableResponse {
+    pageInfo: PageInfo!
+    content: [Comment]
+}
+

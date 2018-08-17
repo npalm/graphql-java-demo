@@ -1,5 +1,5 @@
-mutation CreatPerson($person: InputPerson!) {
-  addPerson(person: $person) {
+mutation CreatPerson($input: InputPerson!) {
+  addPerson(person: $input) {
     id
     name
     blog

@@ -1,0 +1,13 @@
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = findProperty("jacocoVersion") ?: "0.8.1"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+

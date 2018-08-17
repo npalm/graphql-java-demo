@@ -1,0 +1,7 @@
+mutation Create($input: InputConference!) {
+  addConference(conference: $input) {
+    id
+    name
+    city
+  }
+}

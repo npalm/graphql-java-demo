@@ -1,0 +1,9 @@
+mutation ConntectTalkToConference($conferenceId: Long!, $talkId: Long!) {
+  addTalkToConference(conferenceId: $conferenceId, talkId: $talkId) {
+    name
+    talks {
+      title
+      summary
+    }
+  }
+}

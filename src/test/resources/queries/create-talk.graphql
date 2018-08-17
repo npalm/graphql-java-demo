@@ -1,0 +1,7 @@
+mutation Create($input: InputTalk!) {
+  addTalk(talk: $input) {
+    id
+    title
+    summary
+  }
+}

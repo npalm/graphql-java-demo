@@ -1,0 +1,7 @@
+query FindTalkById($id: Long!) {
+  talk(id: $id) {
+    id
+    title
+    summary
+  }
+}

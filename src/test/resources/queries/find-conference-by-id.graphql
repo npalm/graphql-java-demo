@@ -1,0 +1,7 @@
+query FindConferenceById($id: Long!) {
+  conference(id: $id) {
+    id
+    name
+    city
+  }
+}

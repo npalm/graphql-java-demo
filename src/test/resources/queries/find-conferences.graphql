@@ -1,0 +1,13 @@
+query FindConferences {
+  conferences {
+    id
+    name
+    city
+    talks {
+      title
+      speakers {
+        name
+      }
+    }
+  }
+}
