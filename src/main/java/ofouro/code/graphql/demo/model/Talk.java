@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id"})
+@EqualsAndHashCode(exclude = {"id", "speakers", "conferences"})
 public class Talk {
 
     @Id
