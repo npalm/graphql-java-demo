@@ -15,4 +15,5 @@ script:
 
 
 after_script:
+- cp build/reports/jacoco/test/jacocoTestReport.xml build/jacoco.xml
 - ./cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
