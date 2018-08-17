@@ -33,8 +33,8 @@ public class Talk {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Conference> conferences = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "talk")
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<Comment> comments = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "talk")
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private List<Comment> comments = new ArrayList<>();
 
 }

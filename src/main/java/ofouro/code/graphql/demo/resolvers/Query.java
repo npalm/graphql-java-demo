@@ -56,6 +56,10 @@ public class Query implements GraphQLQueryResolver {
         return conferenceRepository.findById(id);
     }
 
+    public Optional<Comment> comment(final Long id) {
+        return commentRepository.findById(id);
+    }
+
     public CommentPageableResponse comments(final InputPage inputPage) {
         Page<Comment> comments = commentRepository.findAll(InputPage.convert(inputPage));
         return new CommentPageableResponse(comments);

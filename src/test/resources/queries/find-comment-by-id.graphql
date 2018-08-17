@@ -1,0 +1,6 @@
+query findCommentById($id: Long!) {
+  comment(id: $id) {
+    id
+    comment
+  }
+}

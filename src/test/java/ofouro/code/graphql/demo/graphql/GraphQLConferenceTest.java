@@ -66,7 +66,7 @@ public class GraphQLConferenceTest extends GraphQLBaseTest {
     }
 
     @Test
-    public void test() throws IOException {
+    public void testConnections() throws IOException {
 
         InputConference inputConference = new InputConference("For Nerds", "A Dark City");
         GraphQLResponse conferenceCreateResponse = createConference(inputConference);

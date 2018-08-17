@@ -18,7 +18,7 @@ public class InputTalk {
     }
 
     static Talk convert(InputTalk talk) {
-        return talk != null ? new Talk(talk.getTitle(), talk.getSummary(), null, null, null) : null;
+        return talk != null ? new Talk(talk.getTitle(), talk.getSummary(), null, null) : null;
     }
 
 }

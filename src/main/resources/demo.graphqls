@@ -17,7 +17,8 @@ type Query {
     conferences: [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
-    comments(page: InputPage!): CommentPageableResponse
+    comment(id: Long!): Comment
+    comments(page: InputPage): CommentPageableResponse
 }
 
 type Mutation {
@@ -79,8 +80,6 @@ type Talk {
     speakers: [Person!]
     # Conferences where the talk is on the agenda
     conferences: [Conference!]
-    # discussion comments
-    comments: [Comment]
 }
 
 # Object to represent a conference

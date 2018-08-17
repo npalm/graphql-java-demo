@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import lombok.extern.slf4j.Slf4j;
+import ofouro.code.graphql.demo.resolvers.InputComment;
 import ofouro.code.graphql.demo.resolvers.InputConference;
 import ofouro.code.graphql.demo.resolvers.InputPerson;
 import ofouro.code.graphql.demo.resolvers.InputTalk;
@@ -19,6 +20,13 @@ abstract class GraphQLBaseTest {
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
 
+    GraphQLResponse createComment(InputComment input) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+
+        final ObjectNode rootNOde = mapper.createObjectNode();
+        rootNOde.set("input", mapper.convertValue(input, JsonNode.class));
+        return create(rootNOde, "queries/create-comment.graphql");
+    }
 
     GraphQLResponse createConference(InputConference input) throws IOException {
         final ObjectMapper mapper = new ObjectMapper();

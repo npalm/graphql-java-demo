@@ -1,0 +1,20 @@
+query findComments {
+  comments {
+    pageInfo {
+      pageSize
+      pageNumber
+      totalPages
+      totalElements
+    }
+    content {
+      comment
+      id
+      author {
+        name
+      }
+      talk {
+        title
+      }
+    }
+  }
+}
