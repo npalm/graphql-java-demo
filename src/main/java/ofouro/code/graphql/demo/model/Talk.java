@@ -4,21 +4,18 @@ import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "speakers", "conferences"})
-public class Talk {
-
-    @Id
-    @GeneratedValue
-    private final Long id = null;
+@EqualsAndHashCode(callSuper = false, exclude = {"speakers", "conferences"})
+public class Talk extends BaseEntity {
 
     @NonNull
     private String title;

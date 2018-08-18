@@ -17,7 +17,9 @@ type Query {
     conferences: [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
+    # Find a comment by id
     comment(id: Long!): Comment
+    # Find comments
     comments(page: InputPage): CommentPageableResponse
 }
 
@@ -51,7 +53,7 @@ type CommentUpdate {
     # The title of the talk
     talkTitle : String
     # Time when the comment was received
-    timeStamp : String
+    createdOn : String
 }
 
 # Object to represent a Person
@@ -100,6 +102,8 @@ type Comment {
     id: ID!
     # The comment text
     comment: String!
+    # Creation time of the comment
+    createdOn : String
     # The author of the comment
     author: Person!
     # The talk for which the comment is made
@@ -145,20 +149,29 @@ input InputConference {
 }
 
 input InputPage {
+    # The requested page
     page: Long!
+    # The requested size of the page
     size: Long!
 }
 
 type PageInfo {
+    # Total number of elements
     totalElements: Long!
+    # Total number of pages
     totalPages: Long!
-    numberOfEelements: Long!
+    # Number of elements
+    numberOfElements: Long!
+    # Page number
     pageNumber: Long!
+    # Size of the page
     pageSize: Long!
 }
 
 type CommentPageableResponse {
+    # Information of the page
     pageInfo: PageInfo!
+    # The comments
     content: [Comment]
 }
 

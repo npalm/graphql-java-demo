@@ -6,10 +6,6 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: false
-  h2:
-    console:
-      path: /h2
-
 
 graphql:
   servlet:
@@ -31,4 +27,5 @@ graphiql:
 # development profile
 h2:
   console:
+    path: /h2
     enabled: true

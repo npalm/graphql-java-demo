@@ -1,6 +1,7 @@
 package ofouro.code.graphql.demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import graphql.GraphQLException;
 import ofouro.code.graphql.demo.model.Comment;
 import ofouro.code.graphql.demo.model.Conference;
 import ofouro.code.graphql.demo.model.Person;
@@ -13,6 +14,7 @@ import ofouro.code.graphql.demo.service.TalkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Component
@@ -61,10 +63,13 @@ public class Mutation implements GraphQLMutationResolver {
         Optional<Talk> talk = talkRepository.findById(comment.getTalkId());
         Optional<Person> person = personRepository.findById(comment.getAuthorId());
 
-        Comment savedComment = commentRepository.save(new Comment(comment.getComment(), person.get(), talk.get()));
-        commentPublisher.publish(savedComment);
-
-        return savedComment;
+        if (talk.isPresent() && person.isPresent()) {
+            Comment savedComment = commentRepository.save(new Comment(comment.getComment(), ZonedDateTime.now(), person.get(), talk.get()));
+            commentPublisher.publish(savedComment);
+            return savedComment;
+        } else {
+            throw new GraphQLException("Talk or author id is invalid.");
+        }
     }
 
 }

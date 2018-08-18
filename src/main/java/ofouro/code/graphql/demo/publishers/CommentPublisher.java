@@ -8,17 +8,11 @@ import io.reactivex.observables.ConnectableObservable;
 import lombok.extern.slf4j.Slf4j;
 import ofouro.code.graphql.demo.model.Comment;
 import ofouro.code.graphql.demo.model.Talk;
-import ofouro.code.graphql.demo.service.TalkRepository;
+import ofouro.code.graphql.demo.service.TalkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
-import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -26,18 +20,15 @@ public class CommentPublisher {
 
 
     @Autowired
-    private TalkRepository talkRepository;
+    private TalkService talkService;
 
-    final Flowable<CommentUpdate> publisher;
+    private final Flowable<CommentUpdate> publisher;
 
     private ObservableEmitter<CommentUpdate> emitter;
 
     public CommentPublisher() {
         Observable<CommentUpdate> commentUpdateObservable = Observable.create(emitter -> {
             this.emitter = emitter;
-            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-            executorService.scheduleAtFixedRate(newComment(emitter), 0, 10, TimeUnit.SECONDS);
-
         });
 
         ConnectableObservable<CommentUpdate> connectableObservable = commentUpdateObservable.share().publish();
@@ -48,24 +39,7 @@ public class CommentPublisher {
     }
 
     public void publish(final Comment comment) {
-        emitter.onNext(new CommentUpdate(comment.getComment(), comment.getAuthor().getName(), comment.getTalk().getTitle(), ""));
-    }
-
-    public Runnable newComment(ObservableEmitter<CommentUpdate> emitter) {
-        return () -> {
-            CommentUpdate update = getUpdates();
-            if (update != null) {
-                emitUpdates(emitter, update);
-            }
-        };
-    }
-
-    private void emitUpdates(ObservableEmitter<CommentUpdate> emitter, CommentUpdate commentUpdate) {
-        try {
-            emitter.onNext(commentUpdate);
-        } catch (RuntimeException e) {
-            log.error("Cannot send StockUpdate", e);
-        }
+        emitter.onNext(new CommentUpdate(comment.getComment(), comment.getAuthor().getName(), comment.getTalk().getTitle(), comment.getCreatedOn().toString()));
     }
 
 
@@ -75,18 +49,11 @@ public class CommentPublisher {
             return result;
         }
 
-        Optional<Talk> talk = talkRepository.findById(Long.valueOf(talkId));
+        Optional<Talk> talk = talkService.findById(Long.valueOf(talkId));
         if (talk.isPresent()) {
             result = publisher.filter(commentUpdate -> commentUpdate.getTalkTitle().equals(talk.get().getTitle()));
         }
         return result;
     }
-
-    private CommentUpdate getUpdates() {
-        return new CommentUpdate("test",
-                "Niek", "grapql" + new Random().nextInt(100),
-                LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME));
-    }
-
 
 }

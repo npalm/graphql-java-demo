@@ -12,5 +12,5 @@ public class CommentUpdate {
     private String comment;
     private String authorName;
     private String talkTitle;
-    private String timeStamp;
+    private String createdOn;
 }

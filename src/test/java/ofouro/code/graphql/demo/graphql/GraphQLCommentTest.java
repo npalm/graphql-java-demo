@@ -6,7 +6,6 @@ import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import lombok.extern.slf4j.Slf4j;
 import ofouro.code.graphql.demo.resolvers.InputComment;
-import ofouro.code.graphql.demo.resolvers.InputConference;
 import ofouro.code.graphql.demo.resolvers.InputPerson;
 import ofouro.code.graphql.demo.resolvers.InputTalk;
 import org.junit.Test;
@@ -52,7 +51,6 @@ public class GraphQLCommentTest extends GraphQLBaseTest {
         InputPerson inputPerson = new InputPerson("commenter", "noblog", "nogit");
         GraphQLResponse personCreateResponse = createPerson(inputPerson);
         String personId = personCreateResponse.get("$.data.addPerson.id");
-
 
 
         final ObjectMapper mapper = new ObjectMapper();
