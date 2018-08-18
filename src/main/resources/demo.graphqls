@@ -17,7 +17,9 @@ type Query {
     conferences: [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
+    # Find a comment by id
     comment(id: Long!): Comment
+    # Find comments
     comments(page: InputPage): CommentPageableResponse
 }
 
@@ -39,19 +41,7 @@ type Mutation {
 
 type Subscription {
     # Subscribe to all new comments
-    comments: CommentUpdate!
-}
-
-# Comment update
-type CommentUpdate {
-    # The comment text
-    comment : String
-    # The name of the author
-    authorName : String
-    # The title of the talk
-    talkTitle : String
-    # Time when the comment was received
-    timeStamp : String
+    comments: Comment!
 }
 
 # Object to represent a Person
@@ -100,8 +90,10 @@ type Comment {
     id: ID!
     # The comment text
     comment: String!
+    # Creation time of the comment
+    createdOn : String
     # The author of the comment
-    author: Person!
+    author: String!
     # The talk for which the comment is made
     talk: Talk!
 }
@@ -112,7 +104,7 @@ input InputComment {
     # The comment text
     comment: String!
     # The id of the author
-    authorId: Long!
+    author: String!
     # The id of the talk
     talkId: Long!
 }
@@ -145,20 +137,29 @@ input InputConference {
 }
 
 input InputPage {
+    # The requested page
     page: Long!
+    # The requested size of the page
     size: Long!
 }
 
 type PageInfo {
+    # Total number of elements
     totalElements: Long!
+    # Total number of pages
     totalPages: Long!
-    numberOfEelements: Long!
+    # Number of elements
+    numberOfElements: Long!
+    # Page number
     pageNumber: Long!
+    # Size of the page
     pageSize: Long!
 }
 
 type CommentPageableResponse {
+    # Information of the page
     pageInfo: PageInfo!
+    # The comments
     content: [Comment]
 }
 

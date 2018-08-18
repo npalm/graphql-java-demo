@@ -3,21 +3,19 @@ package ofouro.code.graphql.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity
 @Data
-@RequiredArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = {"id", "talks"})
-public class Person {
-
-    @Id
-    @GeneratedValue
-    private final Long id = null;
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = false, exclude = {"talks"})
+public class Person extends BaseEntity {
 
     private String name;
 

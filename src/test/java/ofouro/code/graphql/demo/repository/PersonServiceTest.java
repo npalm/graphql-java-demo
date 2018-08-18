@@ -1,5 +1,6 @@
 package ofouro.code.graphql.demo.repository;
 
+import graphql.Assert;
 import ofouro.code.graphql.demo.model.Person;
 import ofouro.code.graphql.demo.service.PersonRepository;
 import ofouro.code.graphql.demo.service.PersonService;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,6 +28,12 @@ public class PersonServiceTest {
     private PersonRepository personRepository;
 
     private Person johnDoe = new Person("John Doe", "github", "www", new ArrayList<>());
+
+    @Test
+    public void findNull() throws Exception {
+        List<Person> result = personService.find(null);
+        Assert.assertNotNull(result);
+    }
 
     @Test
     public void shouldFindPersonLikeNameJohn() throws Exception {

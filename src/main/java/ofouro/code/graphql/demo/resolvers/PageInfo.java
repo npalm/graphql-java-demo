@@ -8,14 +8,14 @@ public class PageInfo {
 
     private long totalElements;
     private long totalPages;
-    private long numberOfEelements;
+    private long numberOfElements;
     private long pageNumber;
     private long pageSize;
 
     PageInfo(Page page) {
         this.totalElements = page.getTotalElements();
         this.totalPages = page.getTotalPages();
-        this.numberOfEelements = page.getNumberOfElements();
+        this.numberOfElements = page.getNumberOfElements();
         this.pageNumber = page.getNumber();
         this.pageSize = page.getSize();
     }
