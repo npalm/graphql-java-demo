@@ -1,5 +1,6 @@
 package ofouro.code.graphql.demo.repository;
 
+import graphql.Assert;
 import ofouro.code.graphql.demo.model.Talk;
 import ofouro.code.graphql.demo.service.TalkRepository;
 import ofouro.code.graphql.demo.service.TalkService;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,6 +28,12 @@ public class TalkServiceTest {
     private TalkRepository talkRepository;
 
     private Talk aTalk = new Talk("GraphQL is Cool", "summary", new ArrayList<>(), new ArrayList<>());
+
+    @Test
+    public void findNull() {
+        List<Talk> result = talkService.find(null);
+        Assert.assertNotNull(result);
+    }
 
     @Test
     public void shouldFindTalkLikeNameMiddle() throws Exception {
