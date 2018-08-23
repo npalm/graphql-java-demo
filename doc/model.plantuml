@@ -1,0 +1,24 @@
+@startuml
+hide footbox
+skinparam roundcorner 20
+skinparam handwritten true
+skinparam backgroundcolor transparent
+
+skinparam note {
+  FontName Impact
+}
+
+
+object Comment
+together {
+    object Talk
+    object Person
+}
+
+object Conference
+
+Conference }--{ Talk
+Talk --{ Comment : onA
+Comment }-- Person : make
+Talk }--{ Person : hasSpeaker
+@enduml
