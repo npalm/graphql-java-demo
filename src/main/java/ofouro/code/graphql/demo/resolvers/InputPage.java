@@ -1,11 +1,13 @@
 package ofouro.code.graphql.demo.resolvers;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class InputPage {
 
     private int page;

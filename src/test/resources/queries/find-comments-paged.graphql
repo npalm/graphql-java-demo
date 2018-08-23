@@ -1,0 +1,20 @@
+query findComments($page: InputPage) {
+  comments(page: $page) {
+    pageInfo {
+      pageSize
+      pageNumber
+      totalPages
+      totalElements
+    }
+    content {
+      comment
+      id
+      author {
+        name
+      }
+      talk {
+        title
+      }
+    }
+  }
+}

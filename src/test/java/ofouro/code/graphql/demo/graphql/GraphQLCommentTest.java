@@ -1,11 +1,13 @@
 package ofouro.code.graphql.demo.graphql;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
 import lombok.extern.slf4j.Slf4j;
 import ofouro.code.graphql.demo.resolvers.InputComment;
+import ofouro.code.graphql.demo.resolvers.InputPage;
 import ofouro.code.graphql.demo.resolvers.InputPerson;
 import ofouro.code.graphql.demo.resolvers.InputTalk;
 import org.junit.Test;
@@ -30,7 +32,7 @@ public class GraphQLCommentTest extends GraphQLBaseTest {
 
 
     @Test
-    public void findComments() throws IOException {
+    public void findCommentsNull() throws IOException {
         GraphQLResponse findResponse = graphQLTestTemplate.perform("queries/find-comment.graphql", null);
         log.info(String.format("Response: %s", findResponse.getRawResponse().toString()));
 
@@ -38,6 +40,19 @@ public class GraphQLCommentTest extends GraphQLBaseTest {
         assertTrue(findResponse.isOk());
     }
 
+    @Test
+    public void findCommentsWithPage() throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+        InputPage inputPage = new InputPage(0, 20);
+        final ObjectNode rootNOde = mapper.createObjectNode();
+        rootNOde.set("page", mapper.convertValue(inputPage, JsonNode.class));
+
+        GraphQLResponse findResponse = graphQLTestTemplate.perform("queries/find-comments-paged.graphql", rootNOde);
+        log.info(String.format("Response: %s", findResponse.getRawResponse().toString()));
+
+        assertNotNull(findResponse);
+        assertTrue(findResponse.isOk());
+    }
 
     @Test
     public void createAndFInd() throws IOException {
