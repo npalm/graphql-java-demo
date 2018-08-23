@@ -1,5 +1,5 @@
 query FindTalk($filter: InputTalk!) {
-  persons(filter: $filter) {
+  talks(filter: $filter) {
     id
     title
     summary
