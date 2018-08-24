@@ -9,16 +9,33 @@ skinparam note {
 }
 
 
-object Comment
-together {
-    object Talk
-    object Person
+object Comment {
+    String : comment
+    String : author
+    Talk : talk
+    Date : createdOn
 }
 
-object Conference
+object Talk {
+    String : title
+    Person : speaker
+    List<Conference> : conferences
+}
 
-Conference }--{ Talk
-Talk --{ Comment : onA
-Comment }-- Person : make
+object Person {
+    String : name
+    String : githubAccount
+    String : blog
+    List<Talk> : talks
+}
+
+object Conference {
+    String : name
+    String : city
+    List<Talk> : talks
+}
+
+Conference }--{ Talk : has
+Talk --{ Comment : has
 Talk }--{ Person : hasSpeaker
 @enduml
