@@ -7,7 +7,7 @@ RUN apk add yarn
 RUN yarn && yarn build
 RUN find build
 
-FROM openjdk:8u171-jre-alpine3.8
+FROM openjdk:8u171-jdk-alpine3.8
 
 WORKDIR /build
 COPY --from=web-build /build/build /build/src/main/resources/public
