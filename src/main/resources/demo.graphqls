@@ -44,18 +44,6 @@ type Subscription {
     comments: Comment!
 }
 
-# Comment update
-type CommentUpdate {
-    # The comment text
-    comment : String
-    # The name of the author
-    authorName : String
-    # The title of the talk
-    talkTitle : String
-    # Time when the comment was received
-    createdOn : String
-}
-
 # Object to represent a Person
 type Person {
     # The technical id
