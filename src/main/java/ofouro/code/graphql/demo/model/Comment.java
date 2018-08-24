@@ -3,10 +3,7 @@ package ofouro.code.graphql.demo.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -18,6 +15,7 @@ import java.time.ZonedDateTime;
 public class Comment extends BaseEntity {
 
     @NonNull
+    @Column(columnDefinition = "TEXT")
     private String comment;
 
     private ZonedDateTime createdOn;
