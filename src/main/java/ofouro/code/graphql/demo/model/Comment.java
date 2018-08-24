@@ -22,8 +22,7 @@ public class Comment extends BaseEntity {
 
     private ZonedDateTime createdOn;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Person author;
+    private String author;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "talk_id")

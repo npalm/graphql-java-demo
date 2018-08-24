@@ -79,8 +79,10 @@ Via subscriptions you can get updates via a web socket about new Notes is. So fi
 subscription {
   comments {
     comment
-    authorName
-    talkTitle
+    author
+    talk {
+      title
+    }
     createdOn
   }
 }
@@ -93,7 +95,7 @@ The response should like as follow.
 Finally make a comment via a mutation in a *new* browser window. Find a talkId in the result of the first query. And the authorId of John in the previous mutation.
 ```graphql
 mutation {
-  addComment(comment: {comment: "Cool", authorId: 18, talkId: 12}) {
+  addComment(comment: {comment: "Cool", author: "Me", talkId: 12}) {
     createdOn
     id
   }

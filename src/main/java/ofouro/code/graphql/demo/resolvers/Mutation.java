@@ -61,10 +61,10 @@ public class Mutation implements GraphQLMutationResolver {
 
     public Comment addComment(final InputComment comment) {
         Optional<Talk> talk = talkRepository.findById(comment.getTalkId());
-        Optional<Person> person = personRepository.findById(comment.getAuthorId());
+        //Optional<Person> person = personRepository.findById(comment.getAuthorId());
 
-        if (talk.isPresent() && person.isPresent()) {
-            Comment savedComment = commentRepository.save(new Comment(comment.getComment(), ZonedDateTime.now(), person.get(), talk.get()));
+        if (talk.isPresent()) {
+            Comment savedComment = commentRepository.save(new Comment(comment.getComment(), ZonedDateTime.now(), comment.getAuthor(), talk.get()));
             commentPublisher.publish(savedComment);
             return savedComment;
         } else {

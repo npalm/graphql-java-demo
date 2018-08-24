@@ -22,16 +22,16 @@ public class CommentPublisher {
     @Autowired
     private TalkService talkService;
 
-    private final Flowable<CommentUpdate> publisher;
+    private final Flowable<Comment> publisher;
 
-    private ObservableEmitter<CommentUpdate> emitter;
+    private ObservableEmitter<Comment> emitter;
 
     public CommentPublisher() {
-        Observable<CommentUpdate> commentUpdateObservable = Observable.create(emitter -> {
+        Observable<Comment> commentUpdateObservable = Observable.create(emitter -> {
             this.emitter = emitter;
         });
 
-        ConnectableObservable<CommentUpdate> connectableObservable = commentUpdateObservable.share().publish();
+        ConnectableObservable<Comment> connectableObservable = commentUpdateObservable.share().publish();
         connectableObservable.connect();
 
 
@@ -39,19 +39,19 @@ public class CommentPublisher {
     }
 
     public void publish(final Comment comment) {
-        emitter.onNext(new CommentUpdate(comment.getComment(), comment.getAuthor().getName(), comment.getTalk().getTitle(), comment.getCreatedOn().toString()));
+        emitter.onNext(comment);
     }
 
 
-    public Flowable<CommentUpdate> getPublisher(Long talkId) {
-        Flowable<CommentUpdate> result = publisher;
+    public Flowable<Comment> getPublisher(Long talkId) {
+        Flowable<Comment> result = publisher;
         if (talkId == null) {
             return result;
         }
 
         Optional<Talk> talk = talkService.findById(Long.valueOf(talkId));
         if (talk.isPresent()) {
-            result = publisher.filter(commentUpdate -> commentUpdate.getTalkTitle().equals(talk.get().getTitle()));
+            result = publisher.filter(commentUpdate -> commentUpdate.getTalk().getTitle().equals(talk.get().getTitle()));
         }
         return result;
     }

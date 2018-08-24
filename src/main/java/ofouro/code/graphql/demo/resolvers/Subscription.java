@@ -2,8 +2,8 @@ package ofouro.code.graphql.demo.resolvers;
 
 
 import com.coxautodev.graphql.tools.GraphQLSubscriptionResolver;
+import ofouro.code.graphql.demo.model.Comment;
 import ofouro.code.graphql.demo.publishers.CommentPublisher;
-import ofouro.code.graphql.demo.publishers.CommentUpdate;
 import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ class Subscription implements GraphQLSubscriptionResolver {
         this.commentPublisher = commentPublisher;
     }
 
-    Publisher<CommentUpdate> comments() {
+    Publisher<Comment> comments() {
         return commentPublisher.getPublisher(null);
     }
 }

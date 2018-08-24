@@ -41,7 +41,7 @@ type Mutation {
 
 type Subscription {
     # Subscribe to all new comments
-    comments: CommentUpdate!
+    comments: Comment!
 }
 
 # Comment update
@@ -105,7 +105,7 @@ type Comment {
     # Creation time of the comment
     createdOn : String
     # The author of the comment
-    author: Person!
+    author: String!
     # The talk for which the comment is made
     talk: Talk!
 }
@@ -116,7 +116,7 @@ input InputComment {
     # The comment text
     comment: String!
     # The id of the author
-    authorId: Long!
+    author: String!
     # The id of the talk
     talkId: Long!
 }
