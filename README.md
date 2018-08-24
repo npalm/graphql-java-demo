@@ -3,7 +3,6 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f569acb75ecae1cff403/test_coverage)](https://codeclimate.com/github/npalm/graphql-java-demo/test_coverage)
 [![Docker](https://img.shields.io/docker/automated/npalm/graphql-java-demo.svg)](https://hub.docker.com/r/npalm/graphql-java-demo/)
 
-
 # GraphQL demo service
 
 This repo contains a simple spring boot services to showcase an GraphQL implementation. The implementation is based on graphql-java-tools a GraphQL java library inspired by Apollo.
