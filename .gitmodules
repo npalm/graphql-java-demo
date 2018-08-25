@@ -1,0 +1,4 @@
+[submodule "react-web"]
+	path = react-web
+	url = https://github.com/npalm/graphql-react-demo.git
+	branch = refactor-comment
