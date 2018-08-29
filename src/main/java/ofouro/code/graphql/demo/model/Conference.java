@@ -1,6 +1,9 @@
 package ofouro.code.graphql.demo.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,13 +12,11 @@ import java.util.List;
 
 @Entity
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Conference extends BaseEntity {
 
-    @NonNull
     private String name;
 
     private String city;

@@ -94,6 +94,7 @@ public class GraphQLTalkTest extends GraphQLBaseTest {
 
         assertNotNull(findResponse);
         assertTrue(findResponse.isOk());
+        assertNotNull(findResponse.context().read("data.talks"));
 
         return findResponse;
     }

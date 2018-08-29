@@ -94,6 +94,7 @@ public class GraphQLPersonTest extends GraphQLBaseTest {
 
         assertNotNull(findResponse);
         assertTrue(findResponse.isOk());
+        assertNotNull(findResponse.context().read("data.persons"));
 
         return findResponse;
     }

@@ -1,5 +1,6 @@
 package ofouro.code.graphql.demo.graphql;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.graphql.spring.boot.test.GraphQLResponse;
@@ -28,9 +29,19 @@ public class GraphQLConferenceTest extends GraphQLBaseTest {
     @Autowired
     private GraphQLTestTemplate graphQLTestTemplate;
 
+    @Test
+    public void finConferenceEmptyFilter() throws IOException {
+
+        final ObjectMapper mapper = new ObjectMapper();
+
+        InputConference filter = new InputConference();
+
+        findConference(filter);
+    }
+
 
     @Test
-    public void findConferences() throws IOException {
+    public void findConferencesNoFilter() throws IOException {
         GraphQLResponse findResponse = graphQLTestTemplate.perform("queries/find-conferences.graphql", null);
         log.info(String.format("Response: %s", findResponse.getRawResponse().toString()));
 
@@ -102,7 +113,22 @@ public class GraphQLConferenceTest extends GraphQLBaseTest {
         assertEquals(inputTalk.getTitle(), responseSpeakerToTalk.get("$.data.addSpeakerToTalk.title"));
         assertEquals(inputPerson.getName(), responseSpeakerToTalk.get("$.data.addSpeakerToTalk.speakers[0].name"));
 
+    }
 
+    private GraphQLResponse findConference(InputConference filter) throws IOException {
+        final ObjectMapper mapper = new ObjectMapper();
+
+        final ObjectNode filterNode = mapper.createObjectNode();
+        filterNode.set("filter", mapper.convertValue(filter, JsonNode.class));
+
+        GraphQLResponse findResponse = graphQLTestTemplate.perform("queries/find-conferences-by-filter.graphql", filterNode);
+        log.info(String.format("Response: %s", findResponse.getRawResponse().toString()));
+
+        assertNotNull(findResponse);
+        assertTrue(findResponse.isOk());
+        assertNotNull(findResponse.context().read("data.conferences"));
+
+        return findResponse;
     }
 
 
