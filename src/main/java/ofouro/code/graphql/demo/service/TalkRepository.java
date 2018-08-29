@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 public interface TalkRepository extends CrudRepository<Talk, Long>, QueryByExampleExecutor<Talk> {
 
-    Talk findByTitle(String title);
-
     List<Talk> findAll();
 }

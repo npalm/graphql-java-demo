@@ -14,6 +14,7 @@
 - [Build and Run](#build-and-run)
 	- [Gradle](#gradle)
 	- [Docker](#docker)
+- [Test data](#test-data)
 
 <!-- /TOC -->
 
@@ -143,3 +144,11 @@ docker run -it --rm -p 8080:8080 graphql-demo
 ```
 
 Now the container should be running and you can play around with GraphQL.
+
+
+## Test data
+During application start some test data is loaded. Test data is defined in the following files.
+
+`src/main/resources/csv/confrences.csv` : The conferences
+`src/main/resources/csv/spakers.csv` : The speakers
+`src/main/resources/csv/talks.csv` : The talks, speakers and conferences can be a comma separated list between double quotes. Matching is done based on name.

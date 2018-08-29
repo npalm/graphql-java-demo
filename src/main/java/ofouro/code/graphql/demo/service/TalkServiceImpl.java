@@ -34,10 +34,12 @@ public class TalkServiceImpl implements TalkService {
                 .collect(Collectors.toList());
     }
 
-
     public Optional<Talk> findById(final Long id) {
         return talkRepository.findById(id);
     }
 
+    public Talk save(Talk talk) {
+        return this.talkRepository.save(talk);
+    }
 
 }

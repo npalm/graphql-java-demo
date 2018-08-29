@@ -34,10 +34,12 @@ public class PersonServiceImpl implements PersonService {
                 .collect(Collectors.toList());
     }
 
-
     public Optional<Person> findById(final Long id) {
         return personRepository.findById(id);
     }
 
+    public Person save(Person person) {
+        return this.personRepository.save(person);
+    }
 
 }
