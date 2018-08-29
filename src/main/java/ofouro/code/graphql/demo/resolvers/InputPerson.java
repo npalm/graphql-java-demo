@@ -18,7 +18,7 @@ public class InputPerson {
         return convert(this);
     }
 
-    static Person convert(InputPerson person) {
+    public static Person convert(InputPerson person) {
         return person != null ? new Person(person.name, person.githubAccount, person.blog, null) : null;
     }
 }

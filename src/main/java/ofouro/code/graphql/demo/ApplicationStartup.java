@@ -1,91 +1,57 @@
 package ofouro.code.graphql.demo;
 
-import ofouro.code.graphql.demo.model.Conference;
-import ofouro.code.graphql.demo.model.Person;
-import ofouro.code.graphql.demo.model.Talk;
-import ofouro.code.graphql.demo.service.ConferenceRepository;
-import ofouro.code.graphql.demo.service.PersonRepository;
-import ofouro.code.graphql.demo.service.TalkRepository;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+import ofouro.code.graphql.demo.dataloader.CsvReader;
+import ofouro.code.graphql.demo.dataloader.CsvTalk;
+import ofouro.code.graphql.demo.resolvers.InputConference;
+import ofouro.code.graphql.demo.resolvers.InputPerson;
+import ofouro.code.graphql.demo.service.ConferenceService;
+import ofouro.code.graphql.demo.service.PersonService;
+import ofouro.code.graphql.demo.service.TalkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.List;
 
+
+@Slf4j
 @Component
 public class ApplicationStartup implements ApplicationListener<ApplicationReadyEvent> {
 
-    @Autowired
-    private PersonRepository personRepository;
 
     @Autowired
-    private TalkRepository talkRepository;
+    private ConferenceService conferenceService;
 
     @Autowired
-    private ConferenceRepository conferenceRepository;
+    private PersonService personService;
 
+    @Autowired
+    private TalkService talkService;
 
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
 
-        String[][] speakersInput = {
-                {"Niek", "npalm", "https://code040.github.io"},
-                {"Josh", "joshlong", "https://spring.io/team/jlong"},
-                {"Maarten", "", ""},
-                {"Gert", "aval", ""},
-                {"Arjen", "poutsma", ""},
-                {"Todd", "", ""},
-                {"Martin", "", ""},
-                {"Jez", "", ""}
-        };
-
-        String[][] talksInput = {
-                {"Niek", "Code the Next Build", "Nextbuild 2017"},
-                {"Niek", "GraphQL - The Next API Language", "Nextbuild 2017,GeeCon 2017"},
-                {"Arjen,Josh", "Reactive Spring", "Nextbuild 2017"},
-                {"Maarten,Gert", "Clojure: alien technology coming to a runtime near you", "Nextbuild 2017"},
-                {"Todd", "Making it count, Quality is not optional", "GeeCon 2017"},
-                {"Todd,Martin", "What was the design process behind the fastest Messaging System", "GeeCon 2017"},
-                {"Jez", "Software Seven Deadly Wasters", "GeeCon 2017"}
-        };
-
-        String[][] conferencesInput = {{"Nextbuild 2017", "Eindhoven"},
-                {"GeeCon 2017", "Prague"}};
-
-        for (String[] speaker : speakersInput) {
-            Person person = new Person();
-            person.setName(speaker[0]);
-            person.setGithubAccount(speaker[1]);
-            person.setBlog(speaker[2]);
-            personRepository.save(person);
-        }
-
-        for (String[] conferenceInput : conferencesInput) {
-            Conference conference = new Conference();
-            conference.setName(conferenceInput[0]);
-            conference.setCity(conferenceInput[1]);
-            conferenceRepository.save(conference);
-        }
-
-        for (String[] talkInput : talksInput) {
-            Talk talk = new Talk();
-            talk.setTitle(talkInput[1]);
-            String[] speakers = StringUtils.split(talkInput[0], ",");
-            for (String speakerInput : speakers) {
-                Person speaker = personRepository.findByName(speakerInput).get(0); // Author names are unique for the demo :)
-                talk.getSpeakers().add(speaker);
-            }
-            String[] conferenceNames = StringUtils.split(talkInput[2], ",");
-            for (String conferenceInput : conferenceNames) {
-                Conference conference = conferenceRepository.findByName(conferenceInput);
-                talk.getConferences().add(conference);
+        try {
+            List<InputConference> inputConferencess = CsvReader.loadObjectList(InputConference.class, "csv/conferences.csv");
+            for (InputConference inputConference : inputConferencess) {
+                conferenceService.save(InputConference.convert(inputConference));
             }
 
+            List<InputPerson> speakers = CsvReader.loadObjectList(InputPerson.class, "csv/speakers.csv");
+            for (InputPerson speaker : speakers) {
+                personService.save(InputPerson.convert(speaker));
+            }
 
-            talkRepository.save(talk);
+            List<CsvTalk> talks = CsvReader.loadObjectList(CsvTalk.class, "csv/talks.csv");
+            for (CsvTalk talk : talks) {
+                talkService.save(talk.convert(conferenceService, personService));
+            }
+        } catch (IOException e) {
+            log.error("Error loading data: " + e.getMessage());
         }
-
-
     }
+
 }

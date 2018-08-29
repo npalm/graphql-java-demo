@@ -7,8 +7,9 @@ import java.util.Optional;
 
 public interface TalkService {
 
-
     List<Talk> find(Talk talk);
 
     Optional<Talk> findById(Long id);
+
+    Talk save(Talk talk);
 }

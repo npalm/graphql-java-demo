@@ -7,12 +7,9 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.observables.ConnectableObservable;
 import lombok.extern.slf4j.Slf4j;
 import ofouro.code.graphql.demo.model.Comment;
-import ofouro.code.graphql.demo.model.Talk;
 import ofouro.code.graphql.demo.service.TalkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Slf4j
 @Component
@@ -42,18 +39,8 @@ public class CommentPublisher {
         emitter.onNext(comment);
     }
 
-
-    public Flowable<Comment> getPublisher(Long talkId) {
-        Flowable<Comment> result = publisher;
-        if (talkId == null) {
-            return result;
-        }
-
-        Optional<Talk> talk = talkService.findById(Long.valueOf(talkId));
-        if (talk.isPresent()) {
-            result = publisher.filter(commentUpdate -> commentUpdate.getTalk().getTitle().equals(talk.get().getTitle()));
-        }
-        return result;
+    public Flowable<Comment> getPublisher() {
+        return this.publisher;
     }
 
 }

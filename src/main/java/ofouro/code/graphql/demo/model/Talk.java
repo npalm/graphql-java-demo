@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -22,6 +23,7 @@ public class Talk extends BaseEntity {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
     @ManyToMany(fetch = FetchType.EAGER)

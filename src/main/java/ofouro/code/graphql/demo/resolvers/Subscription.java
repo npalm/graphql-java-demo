@@ -17,6 +17,6 @@ class Subscription implements GraphQLSubscriptionResolver {
     }
 
     Publisher<Comment> comments() {
-        return commentPublisher.getPublisher(null);
+        return commentPublisher.getPublisher();
     }
 }

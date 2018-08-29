@@ -34,10 +34,11 @@ public class ConferenceServiceImpl implements ConferenceService {
                 .collect(Collectors.toList());
     }
 
-
     public Optional<Conference> findById(final Long id) {
         return conferenceRepository.findById(id);
     }
 
-
+    public Conference save(Conference conference) {
+        return this.conferenceRepository.save(conference);
+    }
 }

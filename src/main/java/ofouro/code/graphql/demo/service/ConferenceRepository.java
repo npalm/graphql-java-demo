@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface ConferenceRepository extends PagingAndSortingRepository<Conference, Long>, QueryByExampleExecutor<Conference> {
 
-    Conference findByName(String name);
-
     List<Conference> findAll();
 
 }

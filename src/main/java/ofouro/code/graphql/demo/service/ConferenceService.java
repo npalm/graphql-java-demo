@@ -11,4 +11,6 @@ public interface ConferenceService {
     List<Conference> find(Conference conference);
 
     Optional<Conference> findById(Long id);
+
+    Conference save(Conference conference);
 }
