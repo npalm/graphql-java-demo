@@ -13,7 +13,12 @@ public class InputConference {
     private String name;
     private String city;
 
+    static Conference convert(InputConference conference) {
+        return conference != null ? new Conference(conference.getName(), conference.getCity(), null) : null;
+
+    }
+
     Conference convert() {
-        return new Conference(this.name, this.city, null);
+        return convert(this);
     }
 }

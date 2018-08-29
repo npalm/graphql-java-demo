@@ -14,7 +14,7 @@ type Query {
     # Find a talk by id
     talk(id: Long!): Talk
     # Find all conferences
-    conferences: [Conference!]
+    conferences(filter: InputConference): [Conference!]
     # Find a conference based on the name
     conference(id: Long!): Conference
     # Find a comment by id
@@ -131,9 +131,9 @@ input InputTalk {
 # Input type for a new Conference
 input InputConference {
     # Name of the conference
-    name: String!
+    name: String
     # City where the conference is held
-    city: String!
+    city: String
 }
 
 input InputPage {

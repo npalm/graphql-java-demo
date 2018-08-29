@@ -6,7 +6,7 @@ import ofouro.code.graphql.demo.model.Conference;
 import ofouro.code.graphql.demo.model.Person;
 import ofouro.code.graphql.demo.model.Talk;
 import ofouro.code.graphql.demo.service.CommentRepository;
-import ofouro.code.graphql.demo.service.ConferenceRepository;
+import ofouro.code.graphql.demo.service.ConferenceService;
 import ofouro.code.graphql.demo.service.PersonService;
 import ofouro.code.graphql.demo.service.TalkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class Query implements GraphQLQueryResolver {
     private TalkService talkService;
 
     @Autowired
-    private ConferenceRepository conferenceRepository;
+    private ConferenceService conferenceService;
 
     @Autowired
     private PersonService personService;
@@ -48,12 +48,12 @@ public class Query implements GraphQLQueryResolver {
         return talkService.findById(id);
     }
 
-    public List<Conference> conferences() {
-        return conferenceRepository.findAll();
+    public List<Conference> conferences(final InputConference filter) {
+        return conferenceService.find(InputConference.convert(filter));
     }
 
     public Optional<Conference> conference(final Long id) {
-        return conferenceRepository.findById(id);
+        return conferenceService.findById(id);
     }
 
     public Optional<Comment> comment(final Long id) {

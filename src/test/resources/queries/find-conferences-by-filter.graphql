@@ -1,0 +1,13 @@
+query FindConferences($filter: InputConference) {
+  conferences(filter: $filter) {
+    id
+    name
+    city
+    talks {
+      title
+      speakers {
+        name
+      }
+    }
+  }
+}

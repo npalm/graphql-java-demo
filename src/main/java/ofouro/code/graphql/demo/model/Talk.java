@@ -1,6 +1,9 @@
 package ofouro.code.graphql.demo.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -17,7 +20,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false, exclude = {"speakers", "conferences"})
 public class Talk extends BaseEntity {
 
-    @NonNull
     private String title;
 
     private String summary;

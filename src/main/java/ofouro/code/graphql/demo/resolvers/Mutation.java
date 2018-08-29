@@ -1,7 +1,6 @@
 package ofouro.code.graphql.demo.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
-import graphql.GraphQLException;
 import ofouro.code.graphql.demo.model.Comment;
 import ofouro.code.graphql.demo.model.Conference;
 import ofouro.code.graphql.demo.model.Person;
@@ -60,16 +59,15 @@ public class Mutation implements GraphQLMutationResolver {
     }
 
     public Comment addComment(final InputComment comment) {
+        Comment result = null;
         Optional<Talk> talk = talkRepository.findById(comment.getTalkId());
-        //Optional<Person> person = personRepository.findById(comment.getAuthorId());
 
         if (talk.isPresent()) {
-            Comment savedComment = commentRepository.save(new Comment(comment.getComment(), ZonedDateTime.now(), comment.getAuthor(), talk.get()));
-            commentPublisher.publish(savedComment);
-            return savedComment;
-        } else {
-            throw new GraphQLException("Talk or author id is invalid.");
+            result = commentRepository.save(new Comment(comment.getComment(), ZonedDateTime.now(), comment.getAuthor(), talk.get()));
+            commentPublisher.publish(result);
         }
+
+        return result;
     }
 
 }
