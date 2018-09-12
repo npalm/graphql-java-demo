@@ -12,14 +12,14 @@ libraries.tools = [
         'org.apache.commons:commons-lang3:3.7',
         'io.reactivex.rxjava2:rxjava:2.1.5',
         'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:',
-        'com.graphql-java:graphql-java-tools:5.2.0'
+        'com.google.guava:guava:26.0-jre'   
 ]
 
 
 libraries.graphql = [
         'com.graphql-java:graphql-spring-boot-starter:5.0.2',
         'com.graphql-java:graphiql-spring-boot-starter:5.0.2',
-        'com.graphql-java:graphql-java-tools:5.2.4'
+        'com.graphql-java:graphql-java-tools:5.2.3'
 ]
 libraries.database = [
         'com.h2database:h2'
