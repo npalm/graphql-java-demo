@@ -21,6 +21,7 @@ libraries.graphql = [
         'com.graphql-java:graphiql-spring-boot-starter:5.0.2',
         'com.graphql-java:graphql-java-tools:5.2.3'
 ]
+
 libraries.database = [
         'com.h2database:h2'
 ]
