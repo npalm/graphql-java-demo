@@ -116,14 +116,18 @@ public class GraphQLConferenceTest extends GraphQLBaseTest {
     }
 
     private GraphQLResponse findConference(InputConference filter) throws IOException {
-        final ObjectMapper mapper = new ObjectMapper();
 
+        // create GraphQL Variables
+        final ObjectMapper mapper = new ObjectMapper();
         final ObjectNode filterNode = mapper.createObjectNode();
         filterNode.set("filter", mapper.convertValue(filter, JsonNode.class));
 
-        GraphQLResponse findResponse = graphQLTestTemplate.perform("queries/find-conferences-by-filter.graphql", filterNode);
-        log.info(String.format("Response: %s", findResponse.getRawResponse().toString()));
+        // Perform GraphQL request
+        GraphQLResponse findResponse = graphQLTestTemplate
+                .perform("queries/find-conferences-by-filter.graphql", filterNode);
+        log.info(String.format("Response: %s", findResponse.getRawResponse()));
 
+        // Minimal assert to check the response contains no errors
         assertNotNull(findResponse);
         assertTrue(findResponse.isOk());
         assertNotNull(findResponse.context().read("data.conferences"));
