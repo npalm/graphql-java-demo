@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.5.RELEASE'
+        springBootVersion = '2.0.6.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -32,7 +32,7 @@ dependencies {
             libraries.tools,
             libraries.graphql,
             libraries.database
-    
+
     testCompile libraries.test
 }
 

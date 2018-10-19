@@ -12,14 +12,14 @@ libraries.tools = [
         'org.apache.commons:commons-lang3:3.7',
         'io.reactivex.rxjava2:rxjava:2.1.5',
         'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:',
-        'com.google.guava:guava:26.0-jre'   
+        'com.google.guava:guava:26.0-jre'
 ]
 
 
 libraries.graphql = [
-        'com.graphql-java:graphql-spring-boot-starter:5.0.2',
-        'com.graphql-java:graphiql-spring-boot-starter:5.0.2',
-        'com.graphql-java:graphql-java-tools:5.2.3'
+        'com.graphql-java-kickstart:graphql-spring-boot-starter:5.0.5',
+        'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.0.5',
+        'com.graphql-java-kickstart:graphql-java-tools:5.3.4'
 ]
 
 libraries.database = [
@@ -29,5 +29,5 @@ libraries.database = [
 libraries.test = [
         'org.mockito:mockito-core:2.21.0',
         'org.springframework.boot:spring-boot-starter-test',
-        'com.graphql-java:graphql-spring-boot-starter-test:5.0.2'
+        'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5'
 ]
