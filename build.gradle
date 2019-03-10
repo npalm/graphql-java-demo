@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'io.spring.dependency-management'
@@ -20,8 +21,9 @@ apply plugin: 'project-report'
 apply from: "${rootDir}/gradle/dependencies.gradle"
 apply from: "${rootDir}/gradle/jacoco.gradle"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
 
 repositories {
     mavenLocal()
@@ -29,12 +31,16 @@ repositories {
 }
 
 dependencies {
+    annotationProcessor libraries.processors
+
     compile libraries.springboot,
             libraries.tools,
             libraries.graphql,
             libraries.database
 
     testCompile libraries.test
+
+    testAnnotationProcessor libraries.processors
 }
 
 // Enables passing command line options to bootRun (e.g ./gradlew -Dspring.profiles.active=development bootRun)
@@ -42,6 +48,6 @@ bootRun {
     systemProperties System.properties
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.9'
+wrapper {
+    gradleVersion = '5.2.1'
 }
