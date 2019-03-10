@@ -8,18 +8,18 @@ libraries.springboot = [
 
 
 libraries.tools = [
-        'org.projectlombok:lombok:1.18.2',
-        'org.apache.commons:commons-lang3:3.7',
-        'io.reactivex.rxjava2:rxjava:2.1.5',
+        'org.projectlombok:lombok:1.18.6',
+        'org.apache.commons:commons-lang3:3.8.1',
+        'io.reactivex.rxjava2:rxjava:2.2.7',
         'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:',
-        'com.google.guava:guava:26.0-jre'
+        'com.google.guava:guava:27.1-jre'
 ]
 
 
 libraries.graphql = [
-        'com.graphql-java-kickstart:graphql-spring-boot-starter:5.0.5',
-        'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.0.5',
-        'com.graphql-java-kickstart:graphql-java-tools:5.3.4'
+        'com.graphql-java-kickstart:graphql-spring-boot-starter:5.7.0',
+        'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.7.0',
+        'com.graphql-java-kickstart:graphql-java-tools:5.4.1'
 ]
 
 libraries.database = [
