@@ -13,8 +13,6 @@ graphql:
     enabled: true
     corsEnabled: true
     subscriptions:
-#      websocket:
-#        path: /
       websocket:
         path: /subscriptions
 
