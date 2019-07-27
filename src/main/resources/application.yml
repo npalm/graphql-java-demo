@@ -14,7 +14,7 @@ graphql:
     corsEnabled: true
     subscriptions:
       websocket:
-        path: /
+        path: /subscriptions
 
 graphiql:
   mapping: /graphiql
