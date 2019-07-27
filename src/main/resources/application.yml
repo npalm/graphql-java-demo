@@ -13,12 +13,13 @@ graphql:
     enabled: true
     corsEnabled: true
     subscriptions:
+#      websocket:
+#        path: /
       websocket:
-        path: /
+        path: /subscriptions
 
 graphiql:
   mapping: /graphiql
-  endpoint: /graphql
   enabled: true
   pageTitle: GraphiQL
 
