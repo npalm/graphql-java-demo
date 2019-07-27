@@ -2,6 +2,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f569acb75ecae1cff403/maintainability)](https://codeclimate.com/github/npalm/graphql-java-demo/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f569acb75ecae1cff403/test_coverage)](https://codeclimate.com/github/npalm/graphql-java-demo/test_coverage)
 [![Docker](https://img.shields.io/docker/automated/npalm/graphql-java-demo.svg)](https://hub.docker.com/r/npalm/graphql-java-demo/)
+[![Known Vulnerabilities](https://snyk.io//test/github/npalm/graphql-java-demo/badge.svg?targetFile=build.gradle)](https://snyk.io//test/github/npalm/graphql-java-demo?targetFile=build.gradle)
 
 # GraphQL demo service
 
