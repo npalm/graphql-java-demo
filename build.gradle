@@ -55,10 +55,13 @@ dependencies {
     implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
     implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
 
+    // in memory db
+    implementation 'com.h2database:h2'
+
+    // fix security issues
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.1'
 
     // test
-    testImplementation 'com.h2database:h2'
     testImplementation 'org.mockito:mockito-core:2.21.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5'
