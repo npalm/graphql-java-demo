@@ -44,12 +44,16 @@ docker run -d --name grapql-demo -p 8088:8080 npalm/graphql-java-demo
 ```
 
 The following endpoints are now available:
-- http://localhost:8080/graphiql - A graphical interactive in-browser GraphQL IDE.
+- http://localhost:8080/graphiql - GraphQL IDE - GrahphiQL
+- http://localhost:8080/playground - GraphQL IDE - Prisma GraphQL Client
+- http://localhost:8080/altair - GraphQL IDE- Altair GraphQL Client
 - http://localhost:8080/ - A simple reacte
 - ws://localhost:8080/subscriptions
 
 
 ## Example usages
+
+Examples below show the usages of GraphiQL IDE. GraphQL IDE's playground and altair are enabled as well.
 
 Once the application is running point a browser to [http://localhost:8080/graphiql](http://localhost:8080/graphiql). Which will open the GraphQL IDE. Here you can simple enter GraphQL queries. Since GraphQL is based on a schema you have completion features and documentation directly available in the browser.
 ![](doc/graphiql.png)

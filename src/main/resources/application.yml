@@ -22,6 +22,46 @@ graphiql:
   pageTitle: GraphiQL
 
 
+graphql.playground:
+  mapping: /playground
+  endpoint: /graphql
+  subscriptionsEndpoint: /subscriptions
+  staticFolder.basePath: my-playground-resources-folder
+  enabled: true
+  pageTitle: Playground
+  cdn:
+    enabled: false
+    version: latest
+  settings:
+    editor.cursorShape: line
+    editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+    editor.fontSize: 14
+    editor.reuseHeaders: true
+    editor.theme: dark
+    general.betaUpdates: false
+    prettier.printWidth: 80
+    prettier.tabWidth: 2
+    prettier.useTabs: false
+    request.credentials: omit
+    schema.polling.enable: true
+    schema.polling.endpointFilter: "*localhost*"
+    schema.polling.interval: 2000
+    schema.disableComments: true
+    tracing.hideTracingResponse: true
+  headers:
+    headerFor: AllTabs
+
+altair:
+  mapping: /altair
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: false
+  enabled: true
+  pageTitle: Altair
+
 ---
 # development profile
 h2:
