@@ -18,29 +18,51 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'project-report'
 
-apply from: "${rootDir}/gradle/dependencies.gradle"
 apply from: "${rootDir}/gradle/jacoco.gradle"
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
-
 
 repositories {
     mavenLocal()
     jcenter()
 }
 
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
 dependencies {
-    annotationProcessor libraries.processors
 
-    compile libraries.springboot,
-            libraries.tools,
-            libraries.graphql,
-            libraries.database
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
 
-    testCompile libraries.test
+    // tools
+    implementation 'org.projectlombok:lombok:1.18.8'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.9.9'
+    implementation 'com.google.guava:guava:27.1-jre'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
-    testAnnotationProcessor libraries.processors
+    // graphql
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0'
+    implementation 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
+    implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
+
+    // test
+    testImplementation 'com.h2database:h2'
+    testImplementation 'org.mockito:mockito-core:2.21.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+
+
 }
 
 // Enables passing command line options to bootRun (e.g ./gradlew -Dspring.profiles.active=development bootRun)
