@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.6.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -43,12 +43,12 @@ dependencies {
     implementation 'javax.xml.bind:jaxb-api:2.3.0'
 
     // tools
-    implementation 'org.projectlombok:lombok:1.18.8'
+    implementation 'org.projectlombok:lombok:1.18.10'
     implementation 'org.apache.commons:commons-lang3:3.9'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.9.9'
-    implementation 'com.google.guava:guava:27.1-jre'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation 'com.google.guava:guava:28.1-jre'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
 
     // graphql
     implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:5.10.0'
@@ -63,13 +63,13 @@ dependencies {
     runtime 'com.h2database:h2'
 
     // fix security issues
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
 
     // test
-    testImplementation 'org.mockito:mockito-core:2.21.0'
+    testImplementation 'org.mockito:mockito-core:2.27.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.0.5'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.10.0'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.10'
 
 
 }
@@ -80,5 +80,5 @@ bootRun {
 }
 
 wrapper {
-    gradleVersion = '5.5.1'
+    gradleVersion = '5.6.2'
 }

@@ -8,14 +8,15 @@
 
 <!-- TOC depthFrom:2 depthTo:3 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Introduction](#introduction)
-- [Application](#application)
-- [Run with docker](#run-with-docker)
-- [Example usages](#example-usages)
-- [Build and Run](#build-and-run)
-	- [Gradle](#gradle)
-	- [Docker](#docker)
-- [Test data](#test-data)
+- [GraphQL demo service](#graphql-demo-service)
+  - [Introduction](#introduction)
+  - [Application](#application)
+  - [Run with docker](#run-with-docker)
+  - [Example usages](#example-usages)
+  - [Build and Run](#build-and-run)
+    - [Gradle](#gradle)
+    - [Docker](#docker)
+  - [Test data](#test-data)
 
 <!-- /TOC -->
 
