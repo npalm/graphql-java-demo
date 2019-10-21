@@ -16,7 +16,6 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TalkServiceTest {
@@ -47,9 +46,8 @@ public class TalkServiceTest {
 
     @Test
     public void shouldNotFind() throws Exception {
-        checkNotFindTalk("REST");
+        checkNotFindTalk("BLAAT");
     }
-
 
     private Iterable<Talk> setupAndFind(String title) {
         // Arrange
