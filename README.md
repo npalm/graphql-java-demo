@@ -20,6 +20,13 @@
 
 <!-- /TOC -->
 
+#TL;TR
+
+Execute the `start.sh` script to build and start the container via compose. Once started you can experiment with GraphQL via [GraphQL Playground](https://github.com/prisma-labs/graphql-playground), [GraphiQL](https://github.com/graphql/graphiql) or [Altair](https://github.com/imolorhe/altair)
+```
+./start.sh
+```
+
 ## Introduction
 
 This repo contains a simple Spring Boot (2.x) service that implements  [GraphQL](https://graphql.org/) API. The implementation is based on graphql-java-tools a GraphQL java library inspired by Apollo.
