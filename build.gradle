@@ -63,7 +63,7 @@ dependencies {
     runtime 'com.h2database:h2'
 
     // fix security issues
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10.1'
 
     // test
     testImplementation 'org.mockito:mockito-core:2.27.0'
