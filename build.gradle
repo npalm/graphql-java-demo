@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.9.RELEASE'
+        springBootVersion = '2.1.6.RELEASE'
     }
     repositories {
         mavenLocal()
@@ -55,12 +55,12 @@ dependencies {
     implementation 'com.graphql-java-kickstart:graphql-java-tools:5.6.1'
 
     // graphql IDE
-    runtime 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
-    runtime 'com.graphql-java-kickstart:playground-spring-boot-starter:5.10.0'
-    runtime 'com.graphql-java-kickstart:altair-spring-boot-starter:5.10.0'
+    runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:5.10.0'
+    runtimeOnly 'com.graphql-java-kickstart:playground-spring-boot-starter:5.10.0'
+    runtimeOnly 'com.graphql-java-kickstart:altair-spring-boot-starter:5.10.0'
 
     // in memory db
-    runtime 'com.h2database:h2'
+    runtimeOnly 'com.h2database:h2'
 
     // fix security issues
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10.1'
@@ -82,3 +82,4 @@ bootRun {
 wrapper {
     gradleVersion = '5.6.2'
 }
+
