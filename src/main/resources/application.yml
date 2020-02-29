@@ -6,6 +6,9 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: false
+  data:
+    rest:
+      defaultMediaType: application/json
 
 graphql:
   servlet:
