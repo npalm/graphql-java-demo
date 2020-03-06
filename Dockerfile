@@ -15,6 +15,11 @@ ADD . /home
 RUN ./gradlew build
 
 FROM openjdk:11-jdk-stretch
+
+RUN apt-get update && apt-get install -y netcat \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY scripts/* /usr/local/bin/
 COPY --from=java-build /home/build/libs/graphql-demo-service.jar /app/graphql-demo-service.jar
 
 EXPOSE 8080

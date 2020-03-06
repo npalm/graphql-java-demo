@@ -48,6 +48,7 @@ The graphQL API contains *queries*, *mutations* and *subscriptions*. For a Confe
 Pull and run the image.
 
 ```
+docker run -d --name postgres:12 \
 docker run -d --name grapql-demo -p 8080:8080 npalm/graphql-java-demo
 ```
 
