@@ -72,6 +72,7 @@ dependencies {
     testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:5.10.0'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+    runtimeOnly 'org.postgresql:postgresql:42.2.10'
 
 }
 

@@ -4,7 +4,7 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: false
   data:
     rest:
@@ -23,7 +23,6 @@ graphiql:
   mapping: /graphiql
   enabled: true
   pageTitle: GraphiQL
-
 
 graphql.playground:
   mapping: /playground
@@ -65,9 +64,21 @@ altair:
   enabled: true
   pageTitle: Altair
 
----
-# development profile
 h2:
   console:
     path: /h2
     enabled: true
+
+---
+spring:
+  profiles: postgres
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:db}:${POSTGRES_PORT:5432}/${POSTGRES_DB:postgres}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:secret}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob.non_contextual_creation: true # https://hibernate.atlassian.net/browse/HHH-12368
