@@ -1,3 +1,4 @@
+
 [![Build Status](https://travis-ci.com/npalm/graphql-java-demo.svg?branch=master)](https://travis-ci.com/npalm/graphql-java-demo)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f569acb75ecae1cff403/maintainability)](https://codeclimate.com/github/npalm/graphql-java-demo/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f569acb75ecae1cff403/test_coverage)](https://codeclimate.com/github/npalm/graphql-java-demo/test_coverage)
